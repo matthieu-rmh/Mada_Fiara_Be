@@ -1,0 +1,21 @@
+# Ignore all __pycache__ directories
+**/__pycache__/
+
+# Ignore all .pyc files (compiled Python files)
+*.pyc
+
+# Ignore all .pyo files (optimized Python files)
+*.pyo
+
+# Ignore all .pyd files (Python DLL files)
+*.pyd
+
+# Ignore all .so files (C extension modules)
+*.so
+
+# Optional: Ignore .DS_Store files (for macOS users)
+.DS_Store
+
+# Optional: Ignore virtual environment directories
+venv/
+env/

@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="mfb_sale_order_view_form">
+            <field name="name">mfb.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+              
+                <xpath expr="//tree/field[@name='price_unit']" position="attributes">
+                	<attribute name="string">Unit Price Tax Incl.</attribute>
+                </xpath>
+                
+            </field>
+
+        </record>
+    </data>
+</odoo>

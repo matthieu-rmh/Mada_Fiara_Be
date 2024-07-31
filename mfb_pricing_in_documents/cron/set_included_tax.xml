@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="ir_cron_set_included_tax" model="ir.cron">
+		<field name="name">MFB : Set all products tax to tax included</field>
+		<field name="interval_number">1</field>
+		<field name="interval_type">days</field>
+		<field name="numbercall">-1</field>
+		<field name="active">1</field>
+		<field name="doall" eval="False" />
+		<field name="model_id" ref="model_product_template" />
+		<field name="code">model._action_set_included_tax_to_all_products()</field>
+		<field name="state">code</field>
+	</record>
+	
+</odoo>
