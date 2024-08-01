@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="ir_cron_set_included_tax" model="ir.cron">
+		<field name="name">MFB : Deactivate all unrelevant taxes</field>
+		<field name="interval_number">1</field>
+		<field name="interval_type">days</field>
+		<field name="numbercall">-1</field>
+		<field name="active">1</field>
+		<field name="doall" eval="False" />
+		<field name="model_id" ref="model_account_tax" />
+		<field name="code">model._action_deactivate_all_unrelevant_taxes()</field>
+		<field name="state">code</field>
+	</record>
+	
+</odoo>

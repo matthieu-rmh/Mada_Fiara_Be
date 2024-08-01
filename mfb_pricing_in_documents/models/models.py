@@ -15,7 +15,7 @@ class ProductTemplate(models.Model):
         """
 
         # Fetch only stockable products
-        product_items = self.env['product.template'].search([('detailed_type' , '=', 'product')])
+        product_items = self.env['product.template'].sudo().search([('detailed_type' , '=', 'product')])
 
         # Get the included tax on_invoice
         inc_tax = self.get_inc_tax()
