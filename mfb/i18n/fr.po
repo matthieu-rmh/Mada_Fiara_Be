@@ -1,0 +1,239 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mfb
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-01 19:11+0000\n"
+"PO-Revision-Date: 2024-08-01 19:11+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mfb
+#: model:ir.actions.act_window,name:mfb.mfb_display_agencies_action
+#: model:ir.ui.menu,name:mfb.mfb_display_agencies_action_menuitem
+msgid "Agencies"
+msgstr "Agences"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_mfb_agency__name
+msgid "Agency Name"
+msgstr "Nom d'agence"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__auto_part
+msgid "Auto part"
+msgstr "Pièce"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_mfb_agency__create_uid
+#: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_mfb_agency__create_date
+#: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_mfb_agency__display_name
+#: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields.selection,name:mfb.selection__hr_expense__fuel_type__essence
+msgid "Essence"
+msgstr "Essence"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_hr_expense
+msgid "Expense"
+msgstr "Note de frais"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__fuel_type
+msgid "Fuel type"
+msgstr "Type de carburant"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__fuel_qty
+msgid "Fueled quantity (L)"
+msgstr "Quantité (L)"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__fueled_vehicle
+msgid "Fueled vehicle"
+msgstr "Véhicule"
+
+#. module: mfb
+#: model:ir.model.fields.selection,name:mfb.selection__hr_expense__fuel_type__gasoil
+msgid "Gasoil"
+msgstr "Gasoil"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_mfb_agency__id
+#: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__id
+msgid "ID"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_payment_method__image
+msgid "Image"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__insurance_agency
+msgid "Insurance agency"
+msgstr "Agence d'assurance"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__insurance_end_date
+msgid "Insurance end date"
+msgstr "Assurance - Date de fin"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__insurance_start_date
+msgid "Insurance start date"
+msgstr "Assurance - Date de début"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__insured_vehicle
+msgid "Insured Vehicle"
+msgstr "Véhicule assuré"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__is_autopart_purchase_type
+msgid "Is Autopart Purchase Type"
+msgstr "Type achat de pièce"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_product_product__is_autopart_purchase_type
+msgid "Is Autopart Purchase type"
+msgstr "Type pièce"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__is_fuel_type
+msgid "Is Fuel Type"
+msgstr "Type carburant"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_product_product__is_fuel_type
+msgid "Is Fuel type"
+msgstr "Type carburant"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__is_insurance_type
+msgid "Is Insurance Type"
+msgstr "Type assurance"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_product_product__is_insurance_type
+msgid "Is Insurance type"
+msgstr "Type assurance"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__is_jirama_type
+msgid "Is Jirama Type"
+msgstr "Type Jirama"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_product_product__is_jirama_type
+msgid "Is Jirama type"
+msgstr "Type Jirama"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__jirama_consumption
+msgid "Jirama consumption (kWh)"
+msgstr "Consommation Jirama (kWh)"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__jirama_new_index
+msgid "Jirama new index"
+msgstr "Jirama - nouvel index"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__jirama_old_index
+msgid "Jirama old index"
+msgstr "Jirama - ancien index"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_mfb_agency__write_uid
+#: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_mfb_agency__write_date
+#: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mfb
+#: model:ir.actions.server,name:mfb.ir_cron_set_included_tax_ir_actions_server
+msgid "MFB : Deactivate all unrelevant taxes"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__new_index_date
+msgid "New index date"
+msgstr "Date du nouvel index"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_hr_expense__old_index_date
+msgid "Old index date"
+msgstr "Date de l'ancien index"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_payment_method
+msgid "Payment Method"
+msgstr "Mode de paiement"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_product_product
+msgid "Product Variant"
+msgstr "Variante de produit"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_account_tax
+msgid "Tax"
+msgstr "Taxe"
+
+#. module: mfb
+#: model:ir.model.fields,help:mfb.field_payment_method__image
+msgid "The base image used for this payment method; in a 64x64 px format."
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__name
+msgid "Vehicle Name"
+msgstr "Marque et modèle du véhicule"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__number
+msgid "Vehicle Number"
+msgstr "Imatriculation du véhicule"
+
+#. module: mfb
+#: model:ir.actions.act_window,name:mfb.mfb_display_vehicles_action
+#: model:ir.ui.menu,name:mfb.mfb_display_vehicles_action_menuitem
+msgid "Vehicles"
+msgstr "Véhicules"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_mfb_agency
+msgid "mfb.agency"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_mfb_vehicle
+msgid "mfb.vehicle"
+msgstr ""

@@ -8,8 +8,10 @@
     'website': 'http://www.example.com',
     'depends': ['base', 'sale', 'account'],
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'cron/ir_cron.xml',
+        'views/mfb_models_views.xml',
+
 
 
     ],

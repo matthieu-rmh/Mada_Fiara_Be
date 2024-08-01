@@ -1,0 +1,189 @@
+<odoo>
+    <data>
+
+    <!-- HR.EXPENSE FORM INHERITANCE START -->
+    <record model="ir.ui.view" id="mfb_hr_expense_form">
+                <field name="name">mfb.hr.expense.form</field>
+                <field name="model">hr.expense</field>
+                <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+                <field name="arch" type="xml">
+                
+                    <xpath expr="//group[1]/group[1]" position="inside">
+                        <!-- BOOLEAN TYPE FIELDS -->
+                        <field name="is_jirama_type" invisible="1"/>
+                        <field name="is_insurance_type" invisible="1"/>
+                        <field name="is_fuel_type" invisible="1"/>
+                        <field name="is_autopart_purchase_type" invisible="1"/>
+                        <!-- JIRAMA FIELDS -->
+                        <field name="jirama_old_index" invisible="not is_jirama_type"/>
+                        <field name="old_index_date" invisible="not is_jirama_type"/>
+                        <field name="jirama_new_index" invisible="not is_jirama_type"/>
+                        <field name="new_index_date" invisible="not is_jirama_type"/>
+                        <field name="jirama_consumption" invisible="not is_jirama_type"/>
+                        <!-- INSURANCE FIELDS -->
+                        <field name="insurance_start_date" invisible="not is_insurance_type"/>
+                        <field name="insurance_end_date" invisible="not is_insurance_type"/>
+                        <field name="insured_vehicle" invisible="not is_insurance_type"/>
+                        <field name="insurance_agency" invisible="not is_insurance_type"/>
+                        <!--  FUEL FIELDS -->
+                        <field name="fueled_vehicle" invisible="not is_fuel_type"/>
+                        <field name="fuel_type" invisible="not is_fuel_type"/>
+                        <field name="fuel_qty" invisible="not is_fuel_type"/>
+                        <!--  AUTOPART PURCHASE FIELDS -->
+                        <field name="auto_part" invisible="not is_autopart_purchase_type"/>
+                    </xpath>
+                </field>
+        </record>
+    <!-- HR.EXPENSE FORM INHERITANCE END -->
+
+    <!-- EXPENSE CATEGORY INHERITANCE START -->
+        <record model="ir.ui.view" id="mfb_expense_category_form">
+                <field name="name">mfb.expense.category.form</field>
+                <field name="model">product.product</field>
+                <field name="inherit_id" ref="hr_expense.product_product_expense_form_view"/>
+                <field name="arch" type="xml">
+                
+                    <xpath expr="//group[@name='product_details']/group[1]" position="inside">
+                        <field name="is_jirama_type"/>
+                        <field name="is_insurance_type"/>
+                        <field name="is_fuel_type"/>
+                        <field name="is_autopart_purchase_type"/>
+                    </xpath>
+                </field>
+        </record>
+    <!-- EXPENSE CATEGORY INHERITANCE END -->
+
+    <!-- MFB Agency views START -->
+        
+        <record id="mfb_display_agencies_action" model="ir.actions.act_window">
+			<field name="name">Agencies</field>
+			<field name="res_model">mfb.agency</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+    
+        <menuitem id="mfb_display_agencies_action_menuitem"
+			name="Agencies" action="mfb_display_agencies_action"
+			parent="hr_expense.menu_hr_expense_configuration"/>
+
+        <!-- TREE START -->
+
+        <record id="mfb_agency_tree_view" model="ir.ui.view">
+            <field name="name">mfb.agency.tree.view</field>
+            <field name="model">mfb.agency</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mfb_agency_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="mfb_agency_tree_view"/>
+            <field name="act_window_id" ref="mfb_display_agencies_action"/>
+        </record>
+        <!-- TREE END -->
+
+        <!-- FORM START-->
+        <record id="mfb_agency_form_view" model="ir.ui.view">
+            <field name="name">mfb.agency.form.view</field>
+            <field name="model">mfb.agency</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mfb_agency_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="mfb_agency_form_view"/>
+            <field name="act_window_id" ref="mfb_display_agencies_action"/>
+        </record>
+        <!-- FORM END-->
+
+
+        <!-- MFB Agency views END -->
+
+        <!-- MFB Vehicle views START -->
+        
+        <record id="mfb_display_vehicles_action" model="ir.actions.act_window">
+			<field name="name">Vehicles</field>
+			<field name="res_model">mfb.vehicle</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+    
+        <menuitem id="mfb_display_vehicles_action_menuitem"
+			name="Vehicles" action="mfb_display_vehicles_action"
+			parent="hr_expense.menu_hr_expense_configuration"/>
+
+        <!-- TREE START -->
+
+        <record id="mfb_vehicle_tree_view" model="ir.ui.view">
+            <field name="name">mfb.vehicle.tree.view</field>
+            <field name="model">mfb.vehicle</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="number"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mfb_vehicle_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="mfb_vehicle_tree_view"/>
+            <field name="act_window_id" ref="mfb_display_vehicles_action"/>
+        </record>
+        <!-- TREE END -->
+
+        <!-- FORM START-->
+        <record id="mfb_vehicle_form_view" model="ir.ui.view">
+            <field name="name">mfb.vehicle.form.view</field>
+            <field name="model">mfb.vehicle</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="number"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="mfb_vehicle_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="mfb_vehicle_form_view"/>
+            <field name="act_window_id" ref="mfb_display_vehicles_action"/>
+        </record>
+        <!-- FORM END-->
+
+
+        <!-- MFB Vehicle views END -->
+    </data>
+</odoo>
