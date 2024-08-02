@@ -1,6 +1,19 @@
 <odoo>
     <data>
 
+    <!-- RES.COMPANY START -->
+    <record model="ir.ui.view" id="mfb_res_company_form">
+        <field name="name">mfb.res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="subname"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- RES.COMPANY END -->
+
     <!-- HR.EXPENSE FORM INHERITANCE START -->
     <record model="ir.ui.view" id="mfb_hr_expense_form">
                 <field name="name">mfb.hr.expense.form</field>

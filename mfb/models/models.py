@@ -3,6 +3,11 @@ from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    subname = fields.Char(string="Subname")
+
 class HrExpense(models.Model):
     _inherit = 'hr.expense'
 

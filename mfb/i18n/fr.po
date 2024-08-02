@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-01 19:11+0000\n"
-"PO-Revision-Date: 2024-08-01 19:11+0000\n"
+"POT-Creation-Date: 2024-08-02 14:08+0000\n"
+"PO-Revision-Date: 2024-08-02 14:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,11 @@ msgid "Auto part"
 msgstr "Pièce"
 
 #. module: mfb
+#: model:ir.model,name:mfb.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_mfb_agency__create_uid
 #: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__create_uid
 msgid "Created by"
@@ -52,7 +57,7 @@ msgstr ""
 #. module: mfb
 #: model:ir.model.fields.selection,name:mfb.selection__hr_expense__fuel_type__essence
 msgid "Essence"
-msgstr "Essence"
+msgstr ""
 
 #. module: mfb
 #: model:ir.model,name:mfb.model_hr_expense
@@ -77,7 +82,7 @@ msgstr "Véhicule"
 #. module: mfb
 #: model:ir.model.fields.selection,name:mfb.selection__hr_expense__fuel_type__gasoil
 msgid "Gasoil"
-msgstr "Gasoil"
+msgstr ""
 
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_mfb_agency__id
@@ -201,6 +206,11 @@ msgstr "Mode de paiement"
 #: model:ir.model,name:mfb.model_product_product
 msgid "Product Variant"
 msgstr "Variante de produit"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_res_company__subname
+msgid "Subname"
+msgstr "Sous-nom"
 
 #. module: mfb
 #: model:ir.model,name:mfb.model_account_tax
