@@ -3,10 +3,24 @@ from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    stat = fields.Char(string="STAT")
+    nif = fields.Char(string="NIF")
+    cif = fields.Char(string="CIF")
+
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
     subname = fields.Char(string="Subname")
+    stat = fields.Char(string="STAT")
+    nif = fields.Char(string="NIF")
+    cif = fields.Char(string="CIF")
+
+    def write(self, vals):
+        for record in self:
+            raise UserError(str(vals))
 
 class HrExpense(models.Model):
     _inherit = 'hr.expense'

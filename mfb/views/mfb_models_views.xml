@@ -1,6 +1,21 @@
 <odoo>
     <data>
 
+    <!-- RES.PARTNER START -->
+    <record model="ir.ui.view" id="mfb_res_partner_form">
+        <field name="name">mfb.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_registry']" position="before">
+                <field name="stat"/>
+                <field name="nif"/>
+                <field name="cif"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- RES.PARTNER END -->
+
     <!-- RES.COMPANY START -->
     <record model="ir.ui.view" id="mfb_res_company_form">
         <field name="name">mfb.res.company.form</field>
@@ -9,6 +24,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="before">
                 <field name="subname"/>
+                <field name="stat"/>
+                <field name="nif"/>
+                <field name="cif"/>
             </xpath>
         </field>
     </record>
