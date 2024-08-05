@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mfb_pricing_in_documents
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-05 13:03+0000\n"
+"PO-Revision-Date: 2024-08-05 13:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mfb_pricing_in_documents
+#: model:ir.actions.server,name:mfb_pricing_in_documents.ir_cron_set_included_tax_ir_actions_server
+msgid "MFB : Set all products tax to tax included"
+msgstr ""
+
+#. module: mfb_pricing_in_documents
+#: model:ir.model,name:mfb_pricing_in_documents.model_product_template
+msgid "Product"
+msgstr "Produit"
+
+#. module: mfb_pricing_in_documents
+#: model:ir.model,name:mfb_pricing_in_documents.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: mfb_pricing_in_documents
+#: model_terms:ir.ui.view,arch_db:mfb_pricing_in_documents.mfb_sale_order_view_form
+msgid "Unit Price Tax Incl."
+msgstr "P.U Ariary TTC"

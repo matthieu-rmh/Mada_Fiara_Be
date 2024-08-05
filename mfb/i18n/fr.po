@@ -247,3 +247,8 @@ msgstr ""
 #: model:ir.model,name:mfb.model_mfb_vehicle
 msgid "mfb.vehicle"
 msgstr ""
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_sale_order_line__price_reduce_taxexcl
+msgid "Price Reduce Tax excl"
+msgstr "P.U Ariary HTVA"
