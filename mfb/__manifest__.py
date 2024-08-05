@@ -11,6 +11,7 @@
         'security/ir.model.access.csv',
         'cron/ir_cron.xml',
         'views/mfb_models_views.xml',
+        'views/mfb_custom_layout.xml'
 
 
 
