@@ -16,6 +16,13 @@
 
 
     ],
+    'assets': {
+        'web.report_assets_common': [
+            'mfb/static/src/css/custom.css',
+            '/mfb/static/src/css/fonts.css',
+        ],
+
+    },
     'installable': True,
     'application': True,
 }

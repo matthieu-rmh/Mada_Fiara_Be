@@ -10,6 +10,11 @@ class ResPartner(models.Model):
     nif = fields.Char(string="NIF")
     cif = fields.Char(string="CIF")
 
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    subname = fields.Char(string="Subname")
+
 class HrExpense(models.Model):
     _inherit = 'hr.expense'
 

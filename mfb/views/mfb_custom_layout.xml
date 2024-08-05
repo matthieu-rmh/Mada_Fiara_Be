@@ -1,45 +1,22 @@
 <odoo>
     <data>
         <template id="mfb_custom_layout" inherit_id="web.external_layout_standard">
+            <!-- <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet"/> -->
             <xpath expr="//div[1]" position="replace">
                 <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
-                    <div>CUSTOM LAYOUT</div>
-                    <!-- <div class="row">
-                        <div class="col-3 mb4">
-                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                    <div>
+                        <div class="row">
+                            <div class="col-4">
+                            <p><h2 class="text-center" style="font-size: 25px;font-family: 'Tinos-Bold';"><span t-esc="company.name.upper()"/></h2></p>
+                            <p><h2 class="text-center" style="font-size: 25px;font-family: 'Tinos-Bold';"><span t-esc="company.subname.upper()"/></h2></p>
+                            <p><h2 class="text-center" style="font-size: 20px;"><span t-esc="company.partner_id.street.upper()"/></h2></p>
+                            <p><h2 class="text-center" style="font-size: 20px;"><span t-esc="company.partner_id.city.upper()"/> <span t-esc="company.partner_id.state_id.name.upper()"/></h2></p>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-4"></div>
                         </div>
-                        <div class="col-9 text-end" style="margin-top:22px;" t-if="company.report_header" t-field="company.report_header" name="moto">Company tagline</div>
                     </div>
-                    <div t-if="company.logo or company.report_header" class="row zero_min_height">
-                        <div class="col-12">
-                            <div style="border-bottom: 1px solid black;"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6" name="company_address">
-                            <ul class="list-unstyled" name="company_address_list">
-                                <li t-if="company.is_company_details_empty"><span t-field="company.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}">
-                                    <div class="bg-light border-1 rounded h-100 d-flex flex-column align-items-center justify-content-center p-4 w-100 opacity-75 text-muted text-center">
-                                        <strong>Company address block</strong>
-                                        <div>Contains the company address.</div>
-                                    </div>
-                                </span></li>
-                                <li t-else="">
-                                    <span t-field="company.company_details">
-                                        <div class="bg-light border-1 rounded h-100 d-flex flex-column align-items-center justify-content-center p-4 w-100 opacity-75 text-muted text-center">
-                                            <strong>Company details block</strong>
-                                            <div>Contains the company details.</div>
-                                        </div>
-                                    </span>
-                                </li>
-                                <li t-if="not forced_vat"/>
-                                <li t-else="">
-                                    <t t-esc="company.country_id.vat_label or 'Tax ID'">Tax ID</t>:
-                                    <span t-esc="forced_vat">US12345671</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
+                    
                 </div>
             </xpath>
         </template>

@@ -1,19 +1,6 @@
 <odoo>
     <data>
 
-    <!-- SALE.ORDER START -->
-    <record model="ir.ui.view" id="mfb1_sale_order_form">
-        <field name="name">mfb1.sale.order.form</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='price_unit']" position="before">
-                	<field name="price_reduce_taxexcl" readonly="qty_invoiced &gt; 0"/>
-                </xpath>
-        </field>
-    </record>
-    <!-- SALE.ORDER END -->
-
     <!-- RES.PARTNER START -->
     <record model="ir.ui.view" id="mfb_res_partner_form">
         <field name="name">mfb.res.partner.form</field>
@@ -29,6 +16,18 @@
     </record>
     <!-- RES.PARTNER END -->
 
+    <!-- RES.COMPANY START -->
+    <record model="ir.ui.view" id="mfb_res_company_form">
+        <field name="name">mfb.res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="subname"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- RES.COMPANY END -->
 
     <!-- HR.EXPENSE FORM INHERITANCE START -->
     <record model="ir.ui.view" id="mfb_hr_expense_form">
