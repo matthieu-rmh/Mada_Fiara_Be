@@ -1,3 +1,47 @@
 .mfb-div{
     background-color: yellow;
 }
+
+.p-no-margin{
+    margin: 0px;
+}
+
+.h-no-margin{
+    margin: 0px;
+}
+
+.company-details{
+    margin-top: 20px;
+}
+
+.mfb-report-page{
+    margin-top: 30px;
+}
+
+.mfb-partner-col{
+    /* position: relative;
+    top: -100px; */
+}
+
+.mfb-client-info {
+    line-height: 1.2; /* Adjust as needed for desired compactness */
+}
+.mfb-info-line {
+    display: flex;
+    align-items: baseline;
+}
+.mfb-info-label {
+    min-width: 50px;
+    font-weight: bold;
+    margin-right: 5px; /* Reduced from 10px */
+}
+.mfb-info-value {
+    flex: 1;
+}
+.mfb-underline {
+    text-decoration: underline;
+}
+
+/* .doc-model{
+
+} */

@@ -11,10 +11,9 @@
         'security/ir.model.access.csv',
         'cron/ir_cron.xml',
         'views/mfb_models_views.xml',
-        'views/mfb_custom_layout.xml'
-
-
-
+        'views/mfb_custom_layout.xml',
+        'reports/mfb_reports.xml',
+        'reports/mfb_sale_order_report.xml'
     ],
     'assets': {
         'web.report_assets_common': [

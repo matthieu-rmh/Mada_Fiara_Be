@@ -6,14 +6,57 @@
                 <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
                     <div>
                         <div class="row">
-                            <div class="col-4">
-                            <p><h2 class="text-center" style="font-size: 25px;font-family: 'Tinos-Bold';"><span t-esc="company.name.upper()"/></h2></p>
-                            <p><h2 class="text-center" style="font-size: 25px;font-family: 'Tinos-Bold';"><span t-esc="company.subname.upper()"/></h2></p>
-                            <p><h2 class="text-center" style="font-size: 20px;"><span t-esc="company.partner_id.street.upper()"/></h2></p>
-                            <p><h2 class="text-center" style="font-size: 20px;"><span t-esc="company.partner_id.city.upper()"/> <span t-esc="company.partner_id.state_id.name.upper()"/></h2></p>
+                            <div class="col-6">
+                                <p class="p-no-margin"><h2 class="text-center h-no-margin" style="font-size: 25px;font-family: 'Tinos-Bold';"><span t-esc="company.name.upper()"/></h2></p>
+                                <p class="p-no-margin"><h2 class="text-center" style="font-size: 25px;font-family: 'Tinos-Bold';"><span t-esc="company.subname.upper()"/></h2></p>
+                                <p class="p-no-margin"><h2 class="text-center h-no-margin" style="font-size: 18px;"><span t-esc="company.partner_id.street.upper()"/></h2></p>
+                                <p class="p-no-margin"><h2 class="text-center" style="font-size: 18px;"><span t-esc="company.partner_id.city.upper()"/> <span t-esc="company.partner_id.state_id.name.upper()"/></h2></p>
                             </div>
-                            <div class="col-4"></div>
-                            <div class="col-4"></div>
+                            <div class="col-6">
+                                <t t-if="o._name == 'sale.order'">
+                                    <div>
+                                        <div class="border border-dark"><h2 class="text-center" style="font-size: 20px;">BON DE COMMANDE / DEVIS</h2></div>
+                                        <div style="margin-top: 30px;">
+                                            <p class="p-no-margin">Nº : <t t-esc="o.name"/></p>
+                                            <p class="p-no-margin">Date : <t t-esc="o.date_order.strftime('%d/%m/%Y')"/></p>
+                                        </div>
+                                        
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="row company-details">
+                            <div class="col-6">
+                                <div>
+                                    <p class="p-no-margin">STAT : <span t-esc="company.partner_id.stat"/></p>
+                                    <p class="p-no-margin">NIF : <span t-esc="company.partner_id.nif"/></p>
+                                    <p class="p-no-margin">CIF : <span t-esc="company.partner_id.cif"/></p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <t t-if="o._name == 'sale.order'">
+                                    <div class="border border-dark" style="margin-top: 30px;">
+                                        <div class="mfb-client-info">
+                                            <div class="mfb-info-line">
+                                                <span class="mfb-info-label mfb-underline">CLIENT : </span>
+                                                <span class="mfb-info-value" style="font-weight: bold;"><t t-esc="o.partner_id.name"/></span>
+                                            </div>
+                                            <div class="mfb-info-line">
+                                                <span class="mfb-info-label mfb-underline">LOT : </span>
+                                                <span class="mfb-info-value"><t t-esc="o.partner_id.street"/> <t t-esc="o.partner_id.city"/> (<t t-esc="o.partner_id.zip"/>)</span>
+                                            </div>
+                                            <div class="mfb-info-line">
+                                                <span class="mfb-info-label">STAT : </span>
+                                                <span class="mfb-info-value"><t t-esc="o.partner_id.stat"/></span>
+                                            </div>
+                                            <div class="mfb-info-line">
+                                                <span class="mfb-info-label">NIF : </span>
+                                                <span class="mfb-info-value"><t t-esc="o.partner_id.nif"/></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
                         </div>
                     </div>
                     

@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <template id="mfb_sale_order_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page mfb-report-page" >
+                            <div class="oe_structure"/>
+                            <!-- ROW SECTION TO DISPLAY RIGHT SIDE HEADER -->
+                            <div class="row">
+                                <div class="col-6"></div>
+                                <div class="col-6 mfb-partner-col">
+                                    <!-- <div class="border border-dark"><h2 class="text-center" style="font-size: 25px;">BON DE COMMANDE / DEVIS</h2></div>    -->
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
