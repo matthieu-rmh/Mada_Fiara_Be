@@ -39,7 +39,7 @@
                                         <div class="mfb-client-info">
                                             <div class="mfb-info-line">
                                                 <span class="mfb-info-label mfb-underline">CLIENT : </span>
-                                                <span class="mfb-info-value" style="font-weight: bold;"><t t-esc="o.partner_id.name"/></span>
+                                                <span class="mfb-info-value" ><b><t t-esc="o.partner_id.name"/></b></span>
                                             </div>
                                             <div class="mfb-info-line">
                                                 <span class="mfb-info-label mfb-underline">LOT : </span>

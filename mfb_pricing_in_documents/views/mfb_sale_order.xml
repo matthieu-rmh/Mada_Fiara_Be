@@ -9,7 +9,10 @@
                 <xpath expr="//tree/field[@name='price_unit']" position="attributes">
                 	<attribute name="string">Unit Price Tax Incl.</attribute>
                 </xpath>
-                
+
+                <xpath expr="//tree/field[@name='price_unit']" position="before">
+                	<field name="price_reduce_taxexcl"/>                
+                </xpath>
             </field>
 
         </record>
