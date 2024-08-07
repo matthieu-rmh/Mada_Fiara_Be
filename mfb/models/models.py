@@ -1,7 +1,21 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
+from num2words import num2words
 import logging
 _logger = logging.getLogger(__name__)
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    # def write(self, vals):
+    #     raise UserError(str(num2words(self.amount_total, lang='fr')))
+
+    def amount_total_to_text(self):
+        """
+        Return the amount total of the sale order as a string
+        """
+
+        return str(num2words(self.amount_total, lang='fr'))
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'

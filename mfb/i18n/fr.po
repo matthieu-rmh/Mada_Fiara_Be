@@ -6,14 +6,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-02 14:08+0000\n"
-"PO-Revision-Date: 2024-08-02 14:08+0000\n"
+"POT-Creation-Date: 2024-08-07 07:36+0000\n"
+"PO-Revision-Date: 2024-08-07 07:36+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "27.00"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "31.05"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "<span class=\"mfb-info-label mfb-underline\">CLIENT : </span>"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "<span class=\"mfb-info-label mfb-underline\">LOT : </span>"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "<span class=\"mfb-info-label\">NIF : </span>"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "<span class=\"mfb-info-label\">STAT : </span>"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "<span class=\"text-capitalize font-weight-bold\">Ariary</span>"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "<span>Disc.%</span>"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "<span>MONTANT Ariary HTVA</span>"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "A note, whose content usually applies to the section or product above."
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "A section title"
+msgstr ""
 
 #. module: mfb
 #: model:ir.actions.act_window,name:mfb.mfb_display_agencies_action
@@ -27,14 +87,45 @@ msgid "Agency Name"
 msgstr "Nom d'agence"
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "Arrêtée la présente commande à la somme de :"
+msgstr ""
+
+#. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_hr_expense__auto_part
 msgid "Auto part"
 msgstr "Pièce"
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "BON DE COMMANDE / DEVIS"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_res_partner__cif
+#: model:ir.model.fields,field_description:mfb.field_res_users__cif
+msgid "CIF"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "CIF :"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "Client"
+msgstr ""
+
+#. module: mfb
 #: model:ir.model,name:mfb.model_res_company
 msgid "Companies"
 msgstr "Sociétés"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_mfb_agency__create_uid
@@ -46,6 +137,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:mfb.field_mfb_agency__create_date
 #: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__create_date
 msgid "Created on"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "DESIGNATION"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "Date :"
 msgstr ""
 
 #. module: mfb
@@ -63,6 +164,11 @@ msgstr ""
 #: model:ir.model,name:mfb.model_hr_expense
 msgid "Expense"
 msgstr "Note de frais"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "Fournisseur"
+msgstr ""
 
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_hr_expense__fuel_type
@@ -183,8 +289,29 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: mfb
+#: model:ir.actions.report,name:mfb.action_report_product_product
+msgid "MFB - Quotation / Order"
+msgstr "MFB - Devis / Commande"
+
+#. module: mfb
 #: model:ir.actions.server,name:mfb.ir_cron_set_included_tax_ir_actions_server
 msgid "MFB : Deactivate all unrelevant taxes"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "MONTANT HTVA"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_res_partner__nif
+#: model:ir.model.fields,field_description:mfb.field_res_users__nif
+msgid "NIF"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "NIF :"
 msgstr ""
 
 #. module: mfb
@@ -193,9 +320,19 @@ msgid "New index date"
 msgstr "Date du nouvel index"
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "Nº :"
+msgstr ""
+
+#. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_hr_expense__old_index_date
 msgid "Old index date"
 msgstr "Date de l'ancien index"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "P.U Ariary HTVA"
+msgstr ""
 
 #. module: mfb
 #: model:ir.model,name:mfb.model_payment_method
@@ -208,9 +345,40 @@ msgid "Product Variant"
 msgstr "Variante de produit"
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "QTE"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_res_partner__stat
+#: model:ir.model.fields,field_description:mfb.field_res_users__stat
+msgid "STAT"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "STAT :"
+msgstr ""
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_res_company__subname
 msgid "Subname"
 msgstr "Sous-nom"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "TOTAL TTC"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
+msgid "TVA"
+msgstr ""
 
 #. module: mfb
 #: model:ir.model,name:mfb.model_account_tax
@@ -247,8 +415,3 @@ msgstr ""
 #: model:ir.model,name:mfb.model_mfb_vehicle
 msgid "mfb.vehicle"
 msgstr ""
-
-#. module: sale
-#: model:ir.model.fields,field_description:sale.field_sale_order_line__price_reduce_taxexcl
-msgid "Price Reduce Tax excl"
-msgstr "P.U Ariary HTVA"
