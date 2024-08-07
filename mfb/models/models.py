@@ -20,12 +20,6 @@ class AccountMoveLine(models.Model):
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-    # def write(self, vals):
-    #     raise UserError(str(num2words(self.amount_total, lang='fr')))
-
-    def write(self, vals):
-        raise UserError(str(self.invoice_line_ids))
-
     def amount_total_to_text(self):
         """
         Return the amount total of the account move as a string
@@ -36,9 +30,6 @@ class AccountMove(models.Model):
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    # def write(self, vals):
-    #     raise UserError(str(num2words(self.amount_total, lang='fr')))
-
     def amount_total_to_text(self):
         """
         Return the amount total of the sale order as a string
@@ -48,9 +39,6 @@ class SaleOrder(models.Model):
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
-
-    # def write(self, vals):
-    #     raise UserError(str(num2words(self.amount_total, lang='fr')))
 
     def amount_total_to_text(self):
         """
