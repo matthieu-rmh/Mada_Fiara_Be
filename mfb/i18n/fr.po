@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-07 07:36+0000\n"
-"PO-Revision-Date: 2024-08-07 07:36+0000\n"
+"POT-Creation-Date: 2024-08-07 09:49+0000\n"
+"PO-Revision-Date: 2024-08-07 09:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,25 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mfb
+#: model:ir.actions.report,print_report_name:mfb.mfb_action_report_account_move
+msgid "(object._get_report_base_filename())"
+msgstr ""
+
+#. module: mfb
+#: model:ir.actions.report,print_report_name:mfb.mfb_action_report_sale_order
+msgid ""
+"(object.state in ('draft', 'sent') and 'Devis - %s' % (object.name)) or "
+"'Commande - %s' % (object.name)"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "27.00"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "31.05"
 msgstr ""
@@ -46,31 +60,37 @@ msgid "<span class=\"mfb-info-label\">STAT : </span>"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "<span class=\"text-capitalize font-weight-bold\">Ariary</span>"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "<span>Disc.%</span>"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "<span>MONTANT Ariary HTVA</span>"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "<strong class=\"mr16\">Subtotal</strong>"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "A note, whose content usually applies to the section or product above."
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "A section title"
 msgstr ""
@@ -85,6 +105,11 @@ msgstr "Agences"
 #: model:ir.model.fields,field_description:mfb.field_mfb_agency__name
 msgid "Agency Name"
 msgstr "Nom d'agence"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
+msgid "Arrêtée la présente"
+msgstr ""
 
 #. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
@@ -113,6 +138,7 @@ msgid "CIF :"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "Client"
 msgstr ""
@@ -140,6 +166,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "DESIGNATION"
 msgstr ""
@@ -166,6 +193,12 @@ msgid "Expense"
 msgstr "Note de frais"
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
+msgid "FACTURE"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "Fournisseur"
 msgstr ""
@@ -277,6 +310,16 @@ msgid "Jirama old index"
 msgstr "Jirama - ancien index"
 
 #. module: mfb
+#: model:ir.model,name:mfb.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
+
+#. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_mfb_agency__write_uid
 #: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__write_uid
 msgid "Last Updated by"
@@ -289,7 +332,12 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: mfb
-#: model:ir.actions.report,name:mfb.action_report_product_product
+#: model:ir.actions.report,name:mfb.mfb_action_report_account_move
+msgid "MFB - Customer Invoice"
+msgstr "MFB - Facture Client"
+
+#. module: mfb
+#: model:ir.actions.report,name:mfb.mfb_action_report_sale_order
 msgid "MFB - Quotation / Order"
 msgstr "MFB - Devis / Commande"
 
@@ -299,6 +347,7 @@ msgid "MFB : Deactivate all unrelevant taxes"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "MONTANT HTVA"
 msgstr ""
@@ -330,6 +379,7 @@ msgid "Old index date"
 msgstr "Date de l'ancien index"
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "P.U Ariary HTVA"
 msgstr ""
@@ -345,6 +395,7 @@ msgid "Product Variant"
 msgstr "Variante de produit"
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "QTE"
 msgstr ""
@@ -371,11 +422,13 @@ msgid "Subname"
 msgstr "Sous-nom"
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "TOTAL TTC"
 msgstr ""
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "TVA"
 msgstr ""
@@ -389,6 +442,16 @@ msgstr "Taxe"
 #: model:ir.model.fields,help:mfb.field_payment_method__image
 msgid "The base image used for this payment method; in a 64x64 px format."
 msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_account_move_line__price_reduce_taxexcl
+msgid "Unit Price Tax Excl."
+msgstr "P.U Ariary HTVA"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_view_form
+msgid "Unit Price Tax Incl."
+msgstr "P.U Ariary TTC"
 
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_mfb_vehicle__name
@@ -407,6 +470,16 @@ msgid "Vehicles"
 msgstr "Véhicules"
 
 #. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
+msgid "commande"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
+msgid "facture"
+msgstr ""
+
+#. module: mfb
 #: model:ir.model,name:mfb.model_mfb_agency
 msgid "mfb.agency"
 msgstr ""
@@ -414,4 +487,9 @@ msgstr ""
 #. module: mfb
 #: model:ir.model,name:mfb.model_mfb_vehicle
 msgid "mfb.vehicle"
+msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
+msgid "à la somme de :"
 msgstr ""

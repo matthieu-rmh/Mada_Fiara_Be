@@ -1,5 +1,31 @@
 <odoo>
     <data>
+    <!-- ACCOUNT.MOVE START -->
+    <record model="ir.ui.view" id="mfb_account_move_view_form">
+            <field name="name">mfb.account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+              
+                <xpath expr="//tree/field[@name='price_unit']" position="attributes">
+                	<attribute name="string">Unit Price Tax Incl.</attribute>
+                </xpath>
+
+                <xpath expr="//kanban/field[@name='price_unit']" position="attributes">
+                	<attribute name="string">Unit Price Tax Incl.</attribute>
+                </xpath>
+
+                <xpath expr="//tree/field[@name='price_unit']" position="before">
+                	<field name="price_reduce_taxexcl"/>                
+                </xpath>
+
+                <xpath expr="//kanban/field[@name='price_unit']" position="before">
+                	<field name="price_reduce_taxexcl"/>                
+                </xpath>
+            </field>
+
+        </record>
+    <!-- ACCOUNT.MOVE END -->
 
     <!-- RES.PARTNER START -->
     <record model="ir.ui.view" id="mfb_res_partner_form">

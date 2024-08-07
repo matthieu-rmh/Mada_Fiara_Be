@@ -13,7 +13,8 @@
         'views/mfb_models_views.xml',
         'views/mfb_custom_layout.xml',
         'reports/mfb_reports.xml',
-        'reports/mfb_sale_order_report.xml'
+        'reports/mfb_sale_order_report.xml',
+        'reports/mfb_account_move_report.xml'
     ],
     'assets': {
         'web.report_assets_common': [

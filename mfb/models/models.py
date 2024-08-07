@@ -4,6 +4,48 @@ from num2words import num2words
 import logging
 _logger = logging.getLogger(__name__)
 
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
+
+    price_reduce_taxexcl = fields.Monetary(
+    string="Unit Price Tax Excl.",
+    compute='_compute_price_reduce_taxexcl',
+    store=True, precompute=True)
+
+    @api.depends('price_subtotal', 'quantity')
+    def _compute_price_reduce_taxexcl(self):
+        for line in self:
+            line.price_reduce_taxexcl = line.price_subtotal / line.quantity if line.quantity else 0.0
+
+class AccountMove(models.Model):
+    _inherit = 'account.move'
+
+    # def write(self, vals):
+    #     raise UserError(str(num2words(self.amount_total, lang='fr')))
+
+    def write(self, vals):
+        raise UserError(str(self.invoice_line_ids))
+
+    def amount_total_to_text(self):
+        """
+        Return the amount total of the account move as a string
+        """
+
+        return str(num2words(self.amount_total, lang='fr'))
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    # def write(self, vals):
+    #     raise UserError(str(num2words(self.amount_total, lang='fr')))
+
+    def amount_total_to_text(self):
+        """
+        Return the amount total of the sale order as a string
+        """
+
+        return str(num2words(self.amount_total, lang='fr'))
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
