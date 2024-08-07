@@ -11,7 +11,7 @@
                 </xpath>
 
                 <xpath expr="//tree/field[@name='price_unit']" position="before">
-                	<field name="price_reduce_taxexcl"/>                
+                	<field name="price_reduce_taxexcl" string="Unit Price Tax Excl."/>                
                 </xpath>
             </field>
 
