@@ -117,6 +117,8 @@ class HrExpense(models.Model):
 
     # Autopart purchase type
     auto_part = fields.Many2one("product.template", string="Auto part")
+    str_auto_part = fields.Char(string="Auto part")
+
 
 
     def _compute_is_jirama_type(self):
