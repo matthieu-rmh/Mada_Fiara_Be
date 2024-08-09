@@ -37,8 +37,8 @@ class SaleOrderLine(models.Model):
         for line in self:
             if 'price_unit' in vals and line.product_id:
                 if line.price_unit < line.product_id.list_price:
-                    line.price_modified = True
+                    line.is_price_modified = True
                 else:
-                    line.price_modified = False
+                    line.is_price_modified = False
 
         return res
