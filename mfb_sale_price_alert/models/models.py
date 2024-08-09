@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    is_price_modified = fields.Boolean(string="Is Price Modified", default=False)
+    is_price_modified = fields.Boolean(string="Is Price Modified", default=False, compute='_compute_price_unit_warning')
 
     @api.depends('product_id', 'price_unit')
     def _compute_price_unit_warning(self):
