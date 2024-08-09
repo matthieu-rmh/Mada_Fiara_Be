@@ -9,7 +9,7 @@
                 <!-- Cible le bouton Confirmer -->
                 <xpath expr="//button[@name='button_confirm']" position="attributes">
                     <!-- Ajoute une condition pour vérifier si l'utilisateur appartient au groupe administrateur -->
-                    <attribute name="groups">base.group_system</attribute>
+                    <attribute name="groups">purchase.group_purchase_manager</attribute>
                 </xpath>
             </field>
         </record>
