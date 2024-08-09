@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <!-- Surcharge de la vue form du module Purchase -->
+        <record id="view_purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Cible le bouton Confirmer -->
+                <xpath expr="//button[@name='button_confirm']" position="attributes">
+                    <!-- Ajoute une condition pour vérifier si l'utilisateur appartient au groupe administrateur -->
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
