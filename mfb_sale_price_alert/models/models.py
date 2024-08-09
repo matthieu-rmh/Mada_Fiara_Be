@@ -10,11 +10,12 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('price_unit')
     def _onchange_price_unit_warning(self):
-        if self.price_unit != self.product_id.list_price :
+        if self.price_unit < self.product_id.list_price :
+            self.is_price_modified = True
             return {
                 'warning': {
                 'title': _("Warning for %s", self.product_id.name),
-                'message': "Sale price is different from the product price.",
+                'message': "Le montant saisissé est inférieur au prix de l'article.",
                 }
             }
     
