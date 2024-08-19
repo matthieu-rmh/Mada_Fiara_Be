@@ -47,7 +47,7 @@ class SaleOrderLine(models.Model):
             ('create_date', '<=', today),
             #('is_price_modified', '=', True)  
         ])
-        raise UserError(str(sale_order_lines))
+        raise UserError(str(start_of_week))
         content = ""
         for line in sale_order_lines:
             content += "<tr>"
