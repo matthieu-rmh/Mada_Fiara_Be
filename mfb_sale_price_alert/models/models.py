@@ -11,13 +11,23 @@ class SaleOrderLine(models.Model):
     @api.onchange('price_unit')
     def _onchange_price_unit_warning(self):
 
-        if self.price_unit < self.product_id.list_price :
+        if True : #self.order_id.pricelist_id.id === 1 and self.price_unit < self.product_id.list_price :
             return {
                 'warning': {
-                'title': _("Attention pour %s", self.order_id.pricelist_id.id),#self.product_id.name
-                'message': "Le montant saisissé est inférieur au prix de l'article.",
+                'title': _("Attention pour %s", self.product_id.name),#
+                'message': "Le montant saisissé est inférieur au prix de l'article selon le tarif %s.", _get_product_price_in_pricelist(self.order_id.pricelist_id.id, self.product_id),#self.self.order_id.pricelist_id.name,
                 }
             }
+        #else if self.order_id.pricelist_id.id === 2 and self.price_unit < _get_product_price_in_pricelist()
+
+    def _get_product_price_in_pricelist(self, pricelist_id, product) :
+        self.ensure_one() 
+        pricelist = self.env['product.pricelist'].browse(pricelist_id)
+
+        price = pricelist.get_product_price(product, 1, self.env.user.partner_id)
+
+        return price
+
     
     def _action_sale_price_alert(self) :
         print("hello world")
