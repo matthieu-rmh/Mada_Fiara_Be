@@ -38,7 +38,63 @@ class SaleOrderLine(models.Model):
 
     
     def _action_sale_price_alert(self) :
-        print("hello world")
+        today = datetime.today()
+        start_of_week = today - timedelta(days=today.weekday())
+
+        sale_order_lines = self.env['sale.order.line'].search([
+            ('create_date', '>=', start_of_week),
+            ('create_date', '<=', today),
+            ('is_price_modified', '=', True)  
+        ])
+        content = ""
+        for line in sale_order_lines:
+            content += "<tr>"
+            content += "<td>{line.product_id.default_code}</td>"
+            content += "<td>{line.product_id.name}</td>"
+            content += "<td>{line.price_unit}</td>"
+            content += "<td>{line.product_uom_qty}</td>"
+            content += "</tr>"
+
+        email_body = """
+        <div style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';background-color:#edf2f7;margin:0;padding-top:50px;padding-bottom:50px;width:100%">
+      <table align="center" width="100%" cellpadding="0" cellspacing="0" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';background-color:#edf2f7;border-color:#e8e5ef;border-radius:2px;border-width:1px;margin-top:0;padding:0;width:100%">
+        <tbody>
+          <tr>
+            <td>
+            <table align="center" width="570" cellpadding="0" cellspacing="0" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';background-color:#ffffff;border-color:#e8e5ef;border-radius:2px;border-width:1px;margin-top:50px;padding:20px;width:570px">
+            <tbody>
+             
+              <tr>
+                <td>
+                  <h1 style="font-size:18px"><b>Bonjour,</b></h1>
+                  <p style="font-size:16px;">Ci-après les produits dont les prix sont inférieur aux prix du fiche article , sur les ventes de la semaine :</p>
+                  <table>
+                    <thead>
+                        <th>Code article</th>
+                        <th>Désignation</th>
+                        <th>Prix unitaire</th>
+                        <th>Quantité</th>
+                    <thead>
+                    <tbody>
+                        {}
+                    <tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+        """.format(content)
+        self.env['mail.mail'].create({
+                'subject': 'Résumé des Lignes de Commande Hebdomadaires',
+                'body_html':email_body,
+                'email_from': "notification.madafiarabe@gmail.com",
+                'email_to': 'velonirinamihaja@gmail.com',  
+            }).send()
 
     @api.model
     def create(self, vals):
