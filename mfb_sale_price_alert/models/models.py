@@ -19,7 +19,7 @@ class SaleOrderLine(models.Model):
                 }
             }
         elif self.order_id.pricelist_id.id == 2 : 
-            price = self._get_product_price_in_pricelist(self.order_id.pricelist_id.id, self.product_id) 
+            price = self._get_product_price_in_pricelist(self.order_id.pricelist_id, self.product_id) 
             if self.price_unit < price :
                 return {
                     'warning': {
