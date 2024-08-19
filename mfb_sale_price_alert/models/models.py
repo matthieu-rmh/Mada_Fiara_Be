@@ -18,7 +18,7 @@ class SaleOrderLine(models.Model):
                 'message': _("Le montant saisissé est inférieur au prix  de l'article %s selon le tarif %s.", self.product_id.list_price, self.order_id.pricelist_id.name),
                 }
             }
-        elif self.order_id.pricelist_id.id == 2 : 
+        elif self.product_id and self.order_id.pricelist_id.id == 2 : 
             price = self._get_product_price_in_pricelist(self.order_id.pricelist_id, self.product_id) 
             if self.price_unit < price :
                 return {
