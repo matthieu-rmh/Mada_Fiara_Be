@@ -11,14 +11,22 @@ class SaleOrderLine(models.Model):
     @api.onchange('price_unit')
     def _onchange_price_unit_warning(self):
 
-        if self.order_id.pricelist_id.id == 2 : #and self.price_unit < self.product_id.list_price 
+        if self.order_id.pricelist_id.id == 1 and self.price_unit < self.product_id.list_price :
             return {
                 'warning': {
-                'title': _("Attention pour %s", self.product_id.name),#
-                'message': _("Le montant saisissé est inférieur au prix de l'article selon le tarif %s.", self._get_product_price_in_pricelist(self.order_id.pricelist_id.id, self.product_id)),#self.self.order_id.pricelist_id.name,
+                'title': _("Attention pour %s", self.product_id.name),
+                'message': _("Le montant saisissé est inférieur au prix  de l'article %s selon le tarif %s.", self.product_id.list_price, self.order_id.pricelist_id.name),
                 }
             }
-        #else if self.order_id.pricelist_id.id === 2 and self.price_unit < _get_product_price_in_pricelist()
+        else if self.order_id.pricelist_id.id == 2 : 
+            price = self._get_product_price_in_pricelist(self.order_id.pricelist_id.id, self.product_id)
+            if self.price_unit < price :
+                return {
+                    'warning': {
+                    'title': _("Attention pour %s", self.product_id.name),
+                    'message': _("Le montant saisissé est inférieur au prix de l'article %s selon le tarif %s.", price, self.order_id.pricelist_id.name),
+                    }
+                }
 
     def _get_product_price_in_pricelist(self, pricelist_id, product) :
         self.ensure_one() 
