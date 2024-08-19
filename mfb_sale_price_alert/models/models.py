@@ -11,7 +11,7 @@ class SaleOrderLine(models.Model):
     @api.onchange('price_unit')
     def _onchange_price_unit_warning(self):
 
-        if self.product_id : #self.order_id.pricelist_id.id === 1 and self.price_unit < self.product_id.list_price :
+        if elf.order_id.pricelist_id.id === 2 #and self.price_unit < self.product_id.list_price :
             return {
                 'warning': {
                 'title': _("Attention pour %s", self.product_id.name),#
