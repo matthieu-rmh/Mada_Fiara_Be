@@ -58,7 +58,7 @@ class SaleOrderLine(models.Model):
             if 'price_unit' in vals and line.product_id:
                 if line.order_id.pricelist_id.id == 1 and line.price_unit < line.product_id.list_price:
                     line.is_price_modified = True
-                elif line.order_id.pricelist_id.id == 2 and line.price_unit < self._get_product_price_in_pricelist(line.order_id.pricelist_id.id, line.product_id) : 
+                elif line.order_id.pricelist_id.id == 2 and line.price_unit < line._get_product_price_in_pricelist(line.order_id.pricelist_id.id, line.product_id) : 
                     line.is_price_modified = True
                 else:
                     line.is_price_modified = False
