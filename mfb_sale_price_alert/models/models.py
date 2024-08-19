@@ -24,7 +24,7 @@ class SaleOrderLine(models.Model):
         self.ensure_one() 
         pricelist = self.env['product.pricelist'].browse(pricelist_id)
 
-        price = pricelist.get_product_price(product, 1, self.env.user.partner_id)
+        price = pricelist._get_product_price(product, 1, self.env.user.partner_id)
 
         return price
 
