@@ -45,7 +45,7 @@ class SaleOrderLine(models.Model):
         sale_order_lines = self.env['sale.order.line'].search([
             ('create_date', '>=', start_of_week),
             ('create_date', '<=', today),
-            ('is_price_modified', '=', True)  
+            #('is_price_modified', '=', True)  
         ])
         raise UserError(str(sale_order_lines))
         content = ""
