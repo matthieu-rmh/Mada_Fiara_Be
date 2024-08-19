@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
             return {
                 'warning': {
                 'title': _("Attention pour %s", self.product_id.name),#
-                'message': "Le montant saisissé est inférieur au prix de l'article selon le tarif %s.", _get_product_price_in_pricelist(self.order_id.pricelist_id.id, self.product_id),#self.self.order_id.pricelist_id.name,
+                'message': _("Le montant saisissé est inférieur au prix de l'article selon le tarif %s.", _get_product_price_in_pricelist(self.order_id.pricelist_id.id, self.product_id)),#self.self.order_id.pricelist_id.name,
                 }
             }
         #else if self.order_id.pricelist_id.id === 2 and self.price_unit < _get_product_price_in_pricelist()
