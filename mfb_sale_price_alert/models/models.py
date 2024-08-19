@@ -41,13 +41,14 @@ class SaleOrderLine(models.Model):
     def _action_sale_price_alert(self) :
         today = datetime.today()
         start_of_week = today - timedelta(days=today.weekday())
+        start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
 
         sale_order_lines = self.env['sale.order.line'].search([
             ('create_date', '>=', start_of_week),
             ('create_date', '<=', today),
-            #('is_price_modified', '=', True)  
+            ('is_price_modified', '=', True)  
         ])
-        raise UserError(str(start_of_week))
+        
         content = ""
         for line in sale_order_lines:
             content += "<tr>"
