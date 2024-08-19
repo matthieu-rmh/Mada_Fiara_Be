@@ -18,13 +18,15 @@ class SaleOrderLine(models.Model):
                 'message': _("Le montant saisissé est inférieur au prix  de l'article %s selon le tarif %s.", self.product_id.list_price, self.order_id.pricelist_id.name),
                 }
             }
-        elif self.order_id.pricelist_id.id == 2 and self.order_id != False and self.price_unit < self._get_product_price_in_pricelist(self.order_id.pricelist_id.id, self.product_id) : 
-            return {
-                'warning': {
-                'title': _("Attention pour %s", self.product_id.name),
-                'message': _("Le montant saisissé est inférieur au prix de l'article %s selon le tarif %s.", price, self.order_id.pricelist_id.name),
+        elif self.order_id.pricelist_id.id == 2 : 
+            price = self._get_product_price_in_pricelist(self.order_id.pricelist_id.id, self.product_id) 
+            if self.price_unit < price :
+                return {
+                    'warning': {
+                    'title': _("Attention pour %s", self.product_id.name),
+                    'message': _("Le montant saisissé est inférieur au prix de l'article %s selon le tarif %s.", price, self.order_id.pricelist_id.name),
+                    }
                 }
-            }
 
     def _get_product_price_in_pricelist(self, pricelist_id, product) :
         self.ensure_one() 
