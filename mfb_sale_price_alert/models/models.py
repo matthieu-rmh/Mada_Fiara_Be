@@ -47,6 +47,7 @@ class SaleOrderLine(models.Model):
             ('create_date', '<=', today),
             ('is_price_modified', '=', True)  
         ])
+        raise UserError(str(sale_order_lines))
         content = ""
         for line in sale_order_lines:
             content += "<tr>"
@@ -68,7 +69,7 @@ class SaleOrderLine(models.Model):
               <tr>
                 <td>
                   <h1 style="font-size:18px"><b>Bonjour,</b></h1>
-                  <p style="font-size:16px;">Ci-après les produits dont les prix sont inférieur aux prix du fiche article , sur les ventes de la semaine :</p>
+                  <p style="font-size:16px;">Ci-après les produits dont les prix sont inférieur aux prix du fiche article :</p>
                   <table>
                     <thead>
                         <th>Code article</th>
@@ -91,7 +92,7 @@ class SaleOrderLine(models.Model):
     </div>
         """.format(content)
         self.env['mail.mail'].create({
-                'subject': 'Résumé des Lignes de Commande Hebdomadaires',
+                'subject': 'Résumé des ventes en dessous du prix du fiche article',
                 'body_html':email_body,
                 'email_from': "notification.madafiarabe@gmail.com",
                 'email_to': 'velonirinamihaja@gmail.com',  
