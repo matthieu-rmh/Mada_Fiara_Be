@@ -46,7 +46,7 @@ class SaleOrderLine(models.Model):
         
         if  res.product_id and res.order_id.pricelist_id.id == 1 and res.price_unit < res.product_id.list_price:
             res.is_price_modified = True
-        elif res.product_id and res.order_id.pricelist_id.id == 2 and res.price_unit < self._get_product_price_in_pricelist(res.order_id.pricelist_id.id, res.product_id) : 
+        elif res.product_id and res.order_id.pricelist_id.id == 2 and res.price_unit < res._get_product_price_in_pricelist(res.order_id.pricelist_id.id, res.product_id) : 
             res.is_price_modified = True
 
         return res
