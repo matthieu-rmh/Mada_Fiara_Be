@@ -52,10 +52,10 @@ class SaleOrderLine(models.Model):
         content = ""
         for line in sale_order_lines:
             content += "<tr>"
-            content += "<td>{line.product_id.default_code}</td>"
-            content += "<td>{line.product_id.name}</td>"
-            content += "<td>{line.price_unit}</td>"
-            content += "<td>{line.product_uom_qty}</td>"
+            content += "<td>{}</td>".format(line.product_id.default_code)
+            content += "<td>{}</td>".format(line.product_id.name)
+            content += "<td>{}</td>".format(line.price_unit)
+            content += "<td>{}</td>".format(line.product_uom_qty)
             content += "</tr>"
 
         email_body = """
