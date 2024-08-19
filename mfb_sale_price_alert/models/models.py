@@ -51,11 +51,14 @@ class SaleOrderLine(models.Model):
         
         content = ""
         for line in sale_order_lines:
+            price = line._get_product_price_in_pricelist(line.order_id.pricelist_id.id, line.product_id) if line.order_id.pricelist_id.id == 2 else line.product_id.list_price
             content += "<tr>"
             content += "<td>{}</td>".format(line.product_id.default_code)
             content += "<td>{}</td>".format(line.product_id.name)
             content += "<td>{}</td>".format(line.price_unit)
+            content += "<td>{}</td>".format(price)
             content += "<td>{}</td>".format(line.product_uom_qty)
+            content += "<td>{}</td>".format(line.order_id.pricelist_id.name)
             content += "</tr>"
 
         email_body = """
@@ -75,8 +78,10 @@ class SaleOrderLine(models.Model):
                     <thead>
                         <th>Code article</th>
                         <th>Désignation</th>
-                        <th>Prix unitaire</th>
+                        <th>Prix saisi</th>
+                        <th>Prix du fiche article</th>
                         <th>Quantité</th>
+                        <th>Catégorie tarifaire</th>
                     <thead>
                     <tbody>
                         {}
