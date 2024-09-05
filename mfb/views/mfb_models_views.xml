@@ -1,18 +1,48 @@
 <odoo>
     <data>
-    <!-- ACCOUNT.MOVE START -->
+    <!-- PRODUCT.TEMPLATE START -->
     <record model="ir.ui.view" id="mfb_product_template_view_form">
             <field name="name">mfb.product.template.form</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='standard_price']" position="after">
-                	<span>AED</span>
+
+                <!-- Declares the aed_currency_id field into the view bef -->
+                <xpath expr="//field[@name='standard_price']" position="before">
+                	<field name="aed_currency_id" invisible="1"/>
                 </xpath>
+                <!-- Set the cost price currency to AED instead of MGA -->
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                	<attribute name="options">{'currency_field': 'aed_currency_id', 'field_digits': True}</attribute>
+                </xpath>
+                <!-- The MGA cost price (manually set after in_invoice confirmation) -->
+                <xpath expr="//div[@name='standard_price_uom']" position="after">
+                	<field name="mga_cost_price" widget="monetary" readonly="1"/>
+                </xpath>
+                
             </field>
 
-        </record>
-    <!-- ACCOUNT.MOVE END -->
+    </record>
+
+    <!-- set currency, same way as the form view -->
+    <record model="ir.ui.view" id="mfb_product_template_view_tree">
+            <field name="name">mfb.product.template.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='standard_price']" position="before">
+                	<field name="aed_currency_id" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                	<attribute name="options">{'currency_field': 'aed_currency_id', 'field_digits': True}</attribute>
+                </xpath>
+
+            </field>
+
+    </record>
+    <!-- PRODUCT.TEMPLATE END -->
 
 
     <!-- ACCOUNT.MOVE START -->

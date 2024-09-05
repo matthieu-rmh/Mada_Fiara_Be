@@ -4,6 +4,17 @@ from num2words import num2words
 import logging
 _logger = logging.getLogger(__name__)
 
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    aed_currency_id = fields.Many2one('res.currency', 'AED Currency', compute='_compute_aed_currency_id')
+    mga_cost_price = fields.Float(string="MGA Cost price")
+
+    def _compute_aed_currency_id(self):
+        for rec in self:
+            rec.aed_currency_id = self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1)
+
+
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
