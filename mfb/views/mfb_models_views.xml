@@ -14,6 +14,7 @@
                 <!-- Set the cost price currency to AED instead of MGA -->
                 <xpath expr="//field[@name='standard_price']" position="attributes">
                 	<attribute name="options">{'currency_field': 'aed_currency_id', 'field_digits': True}</attribute>
+                    <attribute name="widget">monetary</attribute>
                 </xpath>
                 <!-- The MGA cost price (manually set after in_invoice confirmation) -->
                 <xpath expr="//div[@name='standard_price_uom']" position="after">

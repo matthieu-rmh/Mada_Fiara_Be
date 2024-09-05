@@ -4,6 +4,29 @@ from num2words import num2words
 import logging
 _logger = logging.getLogger(__name__)
 
+class PurchaseOrder(models.Model):
+    _inherit = 'purchase.order'
+
+    # override action_create_invoice
+    def action_create_invoice(self):
+        product_templates = [ol.product_id.product_tmpl_id for ol in self.order_line]
+
+        # get currency rates of AED currency
+        currency_rates = self.env['res.currency.rate'].sudo().search([('currency_id', '=', 
+                                                                        self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1).id
+                                                                        )]) 
+        
+        # get the latest aed currency rate
+        latest_rate = max(currency_rates,  key=lambda x: x.name)
+
+        # update each product template mga_cost_price in the purchase order by the latest_rate * inverse_company_rate 
+        for  product_template in product_templates:
+            product_template.write({
+                'mga_cost_price': product_template.standard_price * latest_rate.inverse_company_rate
+            })
+
+        return super(PurchaseOrder, self).action_create_invoice()
+
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
