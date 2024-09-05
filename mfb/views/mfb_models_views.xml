@@ -1,5 +1,21 @@
 <odoo>
     <data>
+
+    <!-- SALE.ORDER / LINE VIEW FORM START -->
+    <record model="ir.ui.view" id="mfb_sale_order_view_form">
+        <field name="name">mfb.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//tree/field[@name='price_unit']" position="after">
+                    <field name="mga_product_cost_price" readonly="1"/>
+                </xpath>
+                
+        </field>
+    </record>
+    <!-- SALE.ORDER / LINE VIEW FORM END -->
+
     <!-- PRODUCT.TEMPLATE START -->
     <record model="ir.ui.view" id="mfb_product_template_view_form">
             <field name="name">mfb.product.template.form</field>

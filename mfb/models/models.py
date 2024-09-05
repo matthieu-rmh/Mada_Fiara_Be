@@ -4,6 +4,25 @@ from num2words import num2words
 import logging
 _logger = logging.getLogger(__name__)
 
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    mga_product_cost_price = fields.Float(string="MGA Cost price")
+
+
+    def create(self, vals):
+        product_template  = self.env['product.template'].browse(vals['product_template_id'])
+        vals['mga_product_cost_price'] = product_template.mga_cost_price * vals['product_uom_qty']
+        return super(SaleOrderLine, self).create(vals)
+
+    def write(self, vals):
+
+        qty = vals['product_uom_qty'] if 'product_uom_qty' in vals else self.product_uom_qty
+
+        vals['mga_product_cost_price'] = self.product_template_id.mga_cost_price * qty
+        return super(SaleOrderLine, self).write(vals)
+
+
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
@@ -57,16 +76,6 @@ class AccountMove(models.Model):
     def amount_total_to_text(self):
         """
         Return the amount total of the account move as a string
-        """
-
-        return str(num2words(self.amount_total, lang='fr'))
-
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
-
-    def amount_total_to_text(self):
-        """
-        Return the amount total of the sale order as a string
         """
 
         return str(num2words(self.amount_total, lang='fr'))

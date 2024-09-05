@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-05 14:49+0000\n"
-"PO-Revision-Date: 2024-09-05 14:49+0000\n"
+"POT-Creation-Date: 2024-09-05 19:33+0000\n"
+"PO-Revision-Date: 2024-09-05 19:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -356,6 +356,7 @@ msgstr ""
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_product_product__mga_cost_price
 #: model:ir.model.fields,field_description:mfb.field_product_template__mga_cost_price
+#: model:ir.model.fields,field_description:mfb.field_sale_order_line__mga_product_cost_price
 msgid "MGA Cost price"
 msgstr "Coût en Ariary"
 
@@ -413,6 +414,11 @@ msgid "Product Variant"
 msgstr "Variante de produit"
 
 #. module: mfb
+#: model:ir.model,name:mfb.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande fournisseur"
+
+#. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "QTE"
@@ -433,6 +439,11 @@ msgstr ""
 #: model:ir.model,name:mfb.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commande"
 
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_res_company__subname
