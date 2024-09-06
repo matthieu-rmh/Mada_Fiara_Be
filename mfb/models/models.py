@@ -9,6 +9,7 @@ class SaleOrderLine(models.Model):
 
     mga_product_cost_price = fields.Float(string="MGA Cost price")
     mga_profit_margin = fields.Float(string="MGA profit margin", store=True, compute='_compute_mga_profit_margin')
+    pricelist_id = fields.Many2one(string="Pricelist", comodel_name='product.pricelist', readonly=True)
 
     @api.depends('price_total', 'mga_product_cost_price')
     def _compute_mga_profit_margin(self):
@@ -22,6 +23,7 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         product_template  = self.env['product.template'].browse(vals['product_template_id'])
         vals['mga_product_cost_price'] = product_template.mga_cost_price * vals['product_uom_qty']
+        vals['pricelist_id'] = self.env['sale.order'].browse(vals['order_id']).pricelist_id.id
         return super(SaleOrderLine, self).create(vals)
 
     def write(self, vals):
@@ -29,6 +31,9 @@ class SaleOrderLine(models.Model):
         qty = vals['product_uom_qty'] if 'product_uom_qty' in vals else self.product_uom_qty
 
         vals['mga_product_cost_price'] = self.product_template_id.mga_cost_price * qty
+
+        vals['pricelist_id'] = self.order_id.pricelist_id.id
+
         return super(SaleOrderLine, self).write(vals)
 
 
