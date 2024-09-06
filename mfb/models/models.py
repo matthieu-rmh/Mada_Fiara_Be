@@ -92,6 +92,18 @@ class AccountMove(models.Model):
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    total_profit_margin = fields.Float(string="Profit margin", store=True, compute='_compute_total_profit_margin')
+    total_cost_price = fields.Float(string="Total cost", store=True, compute='_compute_total_cost_price')
+
+    def _compute_total_profit_margin(self):
+        for rec in self:
+            rec.total_profit_margin = sum([line.mga_profit_margin for line in rec.order_line])
+
+
+    def _compute_total_cost_price(self):
+        for rec in self:       
+            rec.total_cost_price = sum([line.mga_product_cost_price for line in rec.order_line])
+
     def amount_total_to_text(self):
         """
         Return the amount total of the sale order as a string

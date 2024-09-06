@@ -15,6 +15,16 @@
                 <xpath expr="//tree/field[@name='price_total']" position="before">
                     <field name="mga_profit_margin" readonly="1"/>
                 </xpath>
+
+                <xpath expr="//group[@name='note_group']" position="after">
+                    <group col="12" class="mt-2 mt-md-0">
+                            <group colspan="6"></group>
+                            <group colspan="6">
+                                <p style="white-space: nowrap;"><b>Total cost : </b> <field name="total_cost_price" widget="monetary"/></p>
+                                <p style="white-space: nowrap;"><b>Profit margin : </b> <field name="total_profit_margin" widget="monetary"/></p>
+                            </group>
+                    </group>
+                </xpath>
                 
         </field>
     </record>
