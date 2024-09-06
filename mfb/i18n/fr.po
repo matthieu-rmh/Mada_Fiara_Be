@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-05 19:33+0000\n"
-"PO-Revision-Date: 2024-09-05 19:33+0000\n"
+"POT-Creation-Date: 2024-09-06 08:34+0000\n"
+"PO-Revision-Date: 2024-09-06 08:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -359,6 +359,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:mfb.field_sale_order_line__mga_product_cost_price
 msgid "MGA Cost price"
 msgstr "Coût en Ariary"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_sale_order_line__mga_profit_margin
+msgid "MGA profit margin"
+msgstr "Marge bénéficiaire (Ariary)"
 
 #. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report

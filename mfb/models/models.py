@@ -8,6 +8,15 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     mga_product_cost_price = fields.Float(string="MGA Cost price")
+    mga_profit_margin = fields.Float(string="MGA profit margin", store=True, compute='_compute_mga_profit_margin')
+
+    @api.depends('price_total', 'mga_product_cost_price')
+    def _compute_mga_profit_margin(self):
+        for rec in self:
+            if rec.mga_product_cost_price : 
+                rec.mga_profit_margin = rec.price_total - rec.mga_product_cost_price
+            else:
+                rec.mga_profit_margin = 0
 
 
     def create(self, vals):
