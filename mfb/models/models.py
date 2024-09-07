@@ -10,6 +10,11 @@ class SaleOrderLine(models.Model):
     mga_product_cost_price = fields.Float(string="MGA Cost price")
     mga_profit_margin = fields.Float(string="MGA profit margin", store=True, compute='_compute_mga_profit_margin')
     pricelist_id = fields.Many2one(string="Pricelist", comodel_name='product.pricelist', readonly=True)
+    order_date = fields.Datetime('Order date', compute='_compute_order_date', store=False)
+
+    def _compute_order_date(self):
+        for rec in self:
+            rec.order_date = rec.order_id.date_order
 
     @api.depends('price_total', 'mga_product_cost_price')
     def _compute_mga_profit_margin(self):
@@ -97,8 +102,8 @@ class AccountMove(models.Model):
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    total_profit_margin = fields.Float(string="Profit margin", store=True, compute='_compute_total_profit_margin')
-    total_cost_price = fields.Float(string="Total cost", store=True, compute='_compute_total_cost_price')
+    total_profit_margin = fields.Float(string="Profit margin", store=False, compute='_compute_total_profit_margin')
+    total_cost_price = fields.Float(string="Total cost", store=False, compute='_compute_total_cost_price')
 
     def _compute_total_profit_margin(self):
         for rec in self:
