@@ -1,5 +1,81 @@
 <odoo>
     <data>
+
+    <!-- SALE.ORDER / LINE VIEW FORM START -->
+    <record model="ir.ui.view" id="mfb_sale_order_view_form">
+        <field name="name">mfb.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//tree/field[@name='price_total']" position="before">
+                    <field name="mga_product_cost_price" readonly="1"/>
+                </xpath>
+
+                <xpath expr="//tree/field[@name='price_total']" position="before">
+                    <field name="mga_profit_margin" readonly="1"/>
+                </xpath>
+
+                <xpath expr="//group[@name='note_group']" position="after">
+                    <group col="12" class="mt-2 mt-md-0">
+                            <group colspan="6"></group>
+                            <group colspan="6">
+                                <p style="white-space: nowrap;"><b>Total cost : </b> <field name="total_cost_price" widget="monetary"/></p>
+                                <p style="white-space: nowrap;"><b>Profit margin : </b> <field name="total_profit_margin" widget="monetary"/></p>
+                            </group>
+                    </group>
+                </xpath>
+                
+        </field>
+    </record>
+    <!-- SALE.ORDER / LINE VIEW FORM END -->
+
+    <!-- PRODUCT.TEMPLATE START -->
+    <record model="ir.ui.view" id="mfb_product_template_view_form">
+            <field name="name">mfb.product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+
+                <!-- Declares the aed_currency_id field into the view bef -->
+                <xpath expr="//field[@name='standard_price']" position="before">
+                	<field name="aed_currency_id" invisible="1"/>
+                </xpath>
+                <!-- Set the cost price currency to AED instead of MGA -->
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                	<attribute name="options">{'currency_field': 'aed_currency_id', 'field_digits': True}</attribute>
+                    <attribute name="widget">monetary</attribute>
+                </xpath>
+                <!-- The MGA cost price (manually set after in_invoice confirmation) -->
+                <xpath expr="//div[@name='standard_price_uom']" position="after">
+                	<field name="mga_cost_price" widget="monetary" readonly="1"/>
+                </xpath>
+                
+            </field>
+
+    </record>
+
+    <!-- set currency, same way as the form view -->
+    <record model="ir.ui.view" id="mfb_product_template_view_tree">
+            <field name="name">mfb.product.template.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='standard_price']" position="before">
+                	<field name="aed_currency_id" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                	<attribute name="options">{'currency_field': 'aed_currency_id', 'field_digits': True}</attribute>
+                </xpath>
+
+            </field>
+
+    </record>
+    <!-- PRODUCT.TEMPLATE END -->
+
+
     <!-- ACCOUNT.MOVE START -->
     <record model="ir.ui.view" id="mfb_account_move_view_form">
             <field name="name">mfb.account.move.form</field>
@@ -106,6 +182,70 @@
                 </field>
         </record>
     <!-- EXPENSE CATEGORY INHERITANCE END -->
+
+    <!-- SALE ORDER LINE REPORT START -->
+    
+    <record id="mfb_display_sol_report_action" model="ir.actions.act_window">
+			<field name="name">Sales per pricelist</field>
+			<field name="res_model">sale.order.line</field>
+			<field name="view_mode">tree</field>
+			<field name="domain">[('state', '=', 'sale')]</field>
+			<field name="context">{'group_by': 'pricelist_id'}</field>
+            <field name="search_view_id" ref="mfb_sol_report_search_view"/>
+            
+    </record>
+
+    <menuitem id="mfb_sol_report_action_menuitem"
+			name="Sales per pricelist" action="mfb_display_sol_report_action"
+			parent="sale.menu_sale_report"/>
+
+    <record id="mfb_sol_report_tree_view" model="ir.ui.view">
+            <field name="name">mfb.sol.report.tree.view</field>
+            <field name="model">sale.order.line</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="order_id"/>
+                    <field name="name" string="Product"/>
+                    <field name="partner_id"/>
+                    <field name="salesman_id"/>
+                    <field name="order_date" string="Sales date"/>
+                    <field name="pricelist_id"/>
+                    <field name="product_uom_qty"/>
+                    <field name="price_total" sum="Sum of Total"/>
+                    <field name="mga_product_cost_price"/>
+                    <field name="mga_profit_margin" sum="Sum of Margin"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="mfb_sol_report_search_view" model="ir.ui.view">
+        <field name="name">mfb.sol.report.search</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="order_id"/>
+                <field name="name"/>
+                <field name="salesman_id"/>
+                <field name="pricelist_id"/>
+                <filter string="Retail price" name="active" domain="[('pricelist_id', '=', 1)]"/>
+                <filter string="Wholesale price" name="active" domain="[('pricelist_id', '=', 2)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Pricelist" name="group_by_pricelist_id" context="{'group_by': 'pricelist_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mfb_sol_report_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="mfb_sol_report_tree_view"/>
+            <field name="act_window_id" ref="mfb_display_sol_report_action"/>
+    </record>
+
+
+    <!-- SALE ORDER LINE REPORT END -->
 
     <!-- MFB Agency views START -->
         

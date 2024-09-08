@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-07 18:54+0000\n"
-"PO-Revision-Date: 2024-08-07 18:54+0000\n"
+"POT-Creation-Date: 2024-09-08 18:40+0000\n"
+"PO-Revision-Date: 2024-09-08 18:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "31.05"
 msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_view_form
+msgid "<b>Profit margin : </b>"
+msgstr "<b>Marge bénéficiaire : </b>"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_view_form
+msgid "<b>Total cost : </b>"
+msgstr "<b>Coût total : </b>"
 
 #. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_custom_layout
@@ -94,6 +104,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "A section title"
 msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_product_product__aed_currency_id
+#: model:ir.model.fields,field_description:mfb.field_product_template__aed_currency_id
+msgid "AED Currency"
+msgstr "Devise en Dihram"
 
 #. module: mfb
 #: model:ir.actions.act_window,name:mfb.mfb_display_agencies_action
@@ -167,6 +183,11 @@ msgid "Created on"
 msgstr ""
 
 #. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_sale_order_line__partner_id
+msgid "Customer"
+msgstr "Client"
+
+#. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "DESIGNATION"
@@ -223,6 +244,11 @@ msgstr "Véhicule"
 #: model:ir.model.fields.selection,name:mfb.selection__hr_expense__fuel_type__gasoil
 msgid "Gasoil"
 msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sol_report_search_view
+msgid "Group By"
+msgstr "Grouper par"
 
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_mfb_agency__id
@@ -348,6 +374,18 @@ msgid "MFB : Deactivate all unrelevant taxes"
 msgstr ""
 
 #. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_product_product__mga_cost_price
+#: model:ir.model.fields,field_description:mfb.field_product_template__mga_cost_price
+#: model:ir.model.fields,field_description:mfb.field_sale_order_line__mga_product_cost_price
+msgid "MGA Cost price"
+msgstr "Coût en Ariary"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_sale_order_line__mga_profit_margin
+msgid "MGA profit margin"
+msgstr "Marge bénéficiaire (Ariary)"
+
+#. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "MONTANT HTVA"
@@ -380,6 +418,11 @@ msgid "Old index date"
 msgstr "Date de l'ancien index"
 
 #. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_sale_order_line__order_date
+msgid "Order date"
+msgstr ""
+
+#. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "P.U Ariary HTVA"
@@ -391,15 +434,42 @@ msgid "Payment Method"
 msgstr "Mode de paiement"
 
 #. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_sale_order_line__pricelist_id
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sol_report_search_view
+msgid "Pricelist"
+msgstr "Liste de prix"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_product_template
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sol_report_tree_view
+msgid "Product"
+msgstr "Produit"
+
+#. module: mfb
 #: model:ir.model,name:mfb.model_product_product
 msgid "Product Variant"
 msgstr "Variante de produit"
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_sale_order__total_profit_margin
+msgid "Profit margin"
+msgstr "Marge bénéficiaire"
+
+#. module: mfb
+#: model:ir.model,name:mfb.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande fournisseur"
 
 #. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_sale_order_report
 msgid "QTE"
 msgstr ""
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sol_report_search_view
+msgid "Retail price"
+msgstr "Prix de détail"
 
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_res_partner__stat
@@ -418,9 +488,35 @@ msgid "Sales Order"
 msgstr "Bon de commande"
 
 #. module: mfb
+#: model:ir.model,name:mfb.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commande"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sol_report_tree_view
+msgid "Sales date"
+msgstr "Date de vente"
+
+#. module: mfb
+#: model:ir.actions.act_window,name:mfb.mfb_display_sol_report_action
+#: model:ir.ui.menu,name:mfb.mfb_sol_report_action_menuitem
+msgid "Sales per pricelist"
+msgstr "Marge bénéficiare par liste de prix"
+
+#. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_res_company__subname
 msgid "Subname"
 msgstr "Sous-nom"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sol_report_tree_view
+msgid "Sum of Margin"
+msgstr "Somme de la marge bénéficiaire"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sol_report_tree_view
+msgid "Sum of Total"
+msgstr "Somme du prix de vente total"
 
 #. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report
@@ -443,6 +539,11 @@ msgstr "Taxe"
 #: model:ir.model.fields,help:mfb.field_payment_method__image
 msgid "The base image used for this payment method; in a 64x64 px format."
 msgstr ""
+
+#. module: mfb
+#: model:ir.model.fields,field_description:mfb.field_sale_order__total_cost_price
+msgid "Total cost"
+msgstr "Coût total"
 
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_account_move_line__price_reduce_taxexcl
@@ -469,6 +570,11 @@ msgstr "Imatriculation du véhicule"
 #: model:ir.ui.menu,name:mfb.mfb_display_vehicles_action_menuitem
 msgid "Vehicles"
 msgstr "Véhicules"
+
+#. module: mfb
+#: model_terms:ir.ui.view,arch_db:mfb.mfb_sol_report_search_view
+msgid "Wholesale price"
+msgstr "Prix de gros"
 
 #. module: mfb
 #: model_terms:ir.ui.view,arch_db:mfb.mfb_account_move_report

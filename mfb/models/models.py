@@ -4,6 +4,83 @@ from num2words import num2words
 import logging
 _logger = logging.getLogger(__name__)
 
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    mga_product_cost_price = fields.Float(string="MGA Cost price")
+    mga_profit_margin = fields.Float(string="MGA profit margin", store=True, compute='_compute_mga_profit_margin')
+    pricelist_id = fields.Many2one(string="Pricelist", comodel_name='product.pricelist', readonly=True)
+    order_date = fields.Datetime('Order date', compute='_compute_order_date', store=False)
+    partner_id = fields.Many2one('res.partner', string='Customer', compute='_compute_partner_id')
+
+    def _compute_partner_id(self):
+        for rec in self:
+            rec.partner_id = rec.order_id.partner_id
+
+    def _compute_order_date(self):
+        for rec in self:
+            rec.order_date = rec.order_id.date_order
+
+    @api.depends('price_total', 'mga_product_cost_price')
+    def _compute_mga_profit_margin(self):
+        for rec in self:
+            if rec.mga_product_cost_price : 
+                rec.mga_profit_margin = rec.price_total - rec.mga_product_cost_price
+            else:
+                rec.mga_profit_margin = 0
+
+
+    def create(self, vals):
+        product_template  = self.env['product.template'].browse(vals['product_template_id'])
+        vals['mga_product_cost_price'] = product_template.mga_cost_price * vals['product_uom_qty']
+        vals['pricelist_id'] = self.env['sale.order'].browse(vals['order_id']).pricelist_id.id
+        return super(SaleOrderLine, self).create(vals)
+
+    def write(self, vals):
+
+        qty = vals['product_uom_qty'] if 'product_uom_qty' in vals else self.product_uom_qty
+
+        vals['mga_product_cost_price'] = self.product_template_id.mga_cost_price * qty
+
+        vals['pricelist_id'] = self.order_id.pricelist_id.id
+
+        return super(SaleOrderLine, self).write(vals)
+
+
+class PurchaseOrder(models.Model):
+    _inherit = 'purchase.order'
+
+    # override action_create_invoice
+    def action_create_invoice(self):
+        product_templates = [ol.product_id.product_tmpl_id for ol in self.order_line]
+
+        # get currency rates of AED currency
+        currency_rates = self.env['res.currency.rate'].sudo().search([('currency_id', '=', 
+                                                                        self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1).id
+                                                                        )]) 
+        
+        # get the latest aed currency rate
+        latest_rate = max(currency_rates,  key=lambda x: x.name)
+
+        # update each product template mga_cost_price in the purchase order by the latest_rate * inverse_company_rate 
+        for  product_template in product_templates:
+            product_template.write({
+                'mga_cost_price': product_template.standard_price * latest_rate.inverse_company_rate
+            })
+
+        return super(PurchaseOrder, self).action_create_invoice()
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    aed_currency_id = fields.Many2one('res.currency', 'AED Currency', compute='_compute_aed_currency_id')
+    mga_cost_price = fields.Float(string="MGA Cost price")
+
+    def _compute_aed_currency_id(self):
+        for rec in self:
+            rec.aed_currency_id = self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1)
+
+
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
@@ -30,15 +107,17 @@ class AccountMove(models.Model):
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    def amount_total_to_text(self):
-        """
-        Return the amount total of the sale order as a string
-        """
+    total_profit_margin = fields.Float(string="Profit margin", store=False, compute='_compute_total_profit_margin')
+    total_cost_price = fields.Float(string="Total cost", store=False, compute='_compute_total_cost_price')
 
-        return str(num2words(self.amount_total, lang='fr'))
+    def _compute_total_profit_margin(self):
+        for rec in self:
+            rec.total_profit_margin = sum([line.mga_profit_margin for line in rec.order_line])
 
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+
+    def _compute_total_cost_price(self):
+        for rec in self:       
+            rec.total_cost_price = sum([line.mga_product_cost_price for line in rec.order_line])
 
     def amount_total_to_text(self):
         """
