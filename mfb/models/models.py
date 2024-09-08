@@ -11,6 +11,11 @@ class SaleOrderLine(models.Model):
     mga_profit_margin = fields.Float(string="MGA profit margin", store=True, compute='_compute_mga_profit_margin')
     pricelist_id = fields.Many2one(string="Pricelist", comodel_name='product.pricelist', readonly=True)
     order_date = fields.Datetime('Order date', compute='_compute_order_date', store=False)
+    partner_id = fields.Many2one('res.partner', string='Customer', compute='_compute_partner_id')
+
+    def _compute_partner_id(self):
+        for rec in self:
+            rec.partner_id = rec.order_id.partner_id
 
     def _compute_order_date(self):
         for rec in self:

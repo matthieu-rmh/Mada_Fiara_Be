@@ -207,6 +207,7 @@
                 <tree>
                     <field name="order_id"/>
                     <field name="name" string="Product"/>
+                    <field name="partner_id"/>
                     <field name="salesman_id"/>
                     <field name="order_date" string="Sales date"/>
                     <field name="pricelist_id"/>
