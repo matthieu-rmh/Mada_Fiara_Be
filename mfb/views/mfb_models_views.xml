@@ -185,6 +185,24 @@
 
     <!-- SALE ORDER LINE REPORT START -->
     
+    <record id="mfb_sol_report_search_view" model="ir.ui.view">
+        <field name="name">mfb.sol.report.search</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="order_id"/>
+                <field name="name"/>
+                <field name="salesman_id"/>
+                <field name="pricelist_id"/>
+                <filter string="Retail price" name="active" domain="[('pricelist_id', '=', 1)]"/>
+                <filter string="Wholesale price" name="active" domain="[('pricelist_id', '=', 2)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Pricelist" name="group_by_pricelist_id" context="{'group_by': 'pricelist_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
     <record id="mfb_display_sol_report_action" model="ir.actions.act_window">
 			<field name="name">Sales per pricelist</field>
 			<field name="res_model">sale.order.line</field>
@@ -217,24 +235,6 @@
                     <field name="mga_profit_margin" sum="Sum of Margin"/>
                 </tree>
             </field>
-    </record>
-
-    <record id="mfb_sol_report_search_view" model="ir.ui.view">
-        <field name="name">mfb.sol.report.search</field>
-        <field name="model">sale.order.line</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="order_id"/>
-                <field name="name"/>
-                <field name="salesman_id"/>
-                <field name="pricelist_id"/>
-                <filter string="Retail price" name="active" domain="[('pricelist_id', '=', 1)]"/>
-                <filter string="Wholesale price" name="active" domain="[('pricelist_id', '=', 2)]"/>
-                <group expand="0" string="Group By">
-                    <filter string="Pricelist" name="group_by_pricelist_id" context="{'group_by': 'pricelist_id'}"/>
-                </group>
-            </search>
-        </field>
     </record>
 
     <record id="mfb_sol_report_tree" model="ir.actions.act_window.view">
