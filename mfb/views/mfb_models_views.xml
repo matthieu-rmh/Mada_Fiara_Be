@@ -161,6 +161,8 @@
                         <field name="fuel_qty" invisible="not is_fuel_type"/>
                         <!--  AUTOPART PURCHASE FIELDS -->
                         <field name="str_auto_part" invisible="not is_autopart_purchase_type"/>
+                        <!--  EXPENSE STORE -->
+                        <field name="expense_store" />
                     </xpath>
                 </field>
         </record>
@@ -246,6 +248,68 @@
 
 
     <!-- SALE ORDER LINE REPORT END -->
+
+    <!-- MFB Store views START -->
+         <record id="mfb_display_store_action" model="ir.actions.act_window">
+			<field name="name">Store</field>
+			<field name="res_model">mfb.store</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+        <menuitem id="mfb_display_store_action_menuitem"
+			name="Store" action="mfb_display_store_action"
+			parent="hr_expense.menu_hr_expense_configuration"/>
+        
+        <!-- TREE START -->
+
+        <record id="mfb_store_tree_view" model="ir.ui.view">
+            <field name="name">mfb.store.tree.view</field>
+            <field name="model">mfb.store</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="mfb_store_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="mfb_store_tree_view"/>
+            <field name="act_window_id" ref="mfb_display_store_action"/>
+        </record>
+        <!-- TREE END -->
+
+          <!-- FORM START-->
+        <record id="mfb_store_form_view" model="ir.ui.view">
+            <field name="name">mfb.store.form.view</field>
+            <field name="model">mfb.store</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mfb_store_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="mfb_store_form_view"/>
+            <field name="act_window_id" ref="mfb_display_store_action"/>
+        </record>
+        <!-- FORM END-->
+
+
+    <!-- MFB Store views END -->
 
     <!-- MFB Agency views START -->
         

@@ -204,6 +204,9 @@ class HrExpense(models.Model):
     insured_vehicle  = fields.Many2one("mfb.vehicle", string="Insured Vehicle")
     insurance_agency  = fields.Many2one("mfb.agency", string="Insurance agency")
 
+    # Store
+    expense_store  = fields.Many2one("mfb.store", string="Store")
+
     # Fuel type field
     fueled_vehicle = fields.Many2one("mfb.vehicle", string="Fueled vehicle")
     fuel_type = fields.Selection([('gasoil', 'Gasoil'),
@@ -270,6 +273,11 @@ class MfbAgency(models.Model):
     _name = 'mfb.agency'
 
     name = fields.Char(string="Agency Name", required=True)
+
+class MfbStore(models.Model):
+    _name = 'mfb.store'
+
+    name = fields.Char(string="Store Name", required=True)
 
 class PaymentMethod(models.Model):
     _inherit = 'payment.method'
