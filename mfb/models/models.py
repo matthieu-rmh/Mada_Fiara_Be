@@ -205,7 +205,7 @@ class HrExpense(models.Model):
     insurance_agency  = fields.Many2one("mfb.agency", string="Insurance agency")
 
     # Store
-    expense_store  = fields.Many2one("mfb.store", string="Store")
+    expense_store  = fields.Many2one("mfb.store", string="Store Name")
 
     # Fuel type field
     fueled_vehicle = fields.Many2one("mfb.vehicle", string="Fueled vehicle")
