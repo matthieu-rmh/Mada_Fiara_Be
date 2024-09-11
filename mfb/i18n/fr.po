@@ -123,6 +123,13 @@ msgid "Agency Name"
 msgstr "Nom d'agence"
 
 #. module: mfb
+#: model:ir.actions.act_window,name:mfb.mfb_display_store_action
+#: model:ir.ui.menu,name:mfb.mfb_display_store_action_menuitem
+msgid "Store"
+msgstr "Magasin"
+
+
+#. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_mfb_store__name
 msgid "Store Name"
 msgstr "Nom du magasin"
