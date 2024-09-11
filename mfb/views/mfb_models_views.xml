@@ -162,7 +162,7 @@
                         <!--  AUTOPART PURCHASE FIELDS -->
                         <field name="str_auto_part" invisible="not is_autopart_purchase_type"/>
                         <!--  EXPENSE STORE -->
-                        <field name="expense_store" />
+                        <field name="expense_store" string="Nom du Magasin" />
                     </xpath>
                 </field>
         </record>
