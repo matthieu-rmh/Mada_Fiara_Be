@@ -11,6 +11,11 @@
                 <xpath expr="//tree/field[@name='price_total']" position="before">
                     <field name="mga_product_cost_price" readonly="1"/>
                 </xpath>
+                
+                 <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="date_entry" string="Date de saisie" readonly="state in ['cancel', 'sale', 'blocked']" />
+                </xpath>
+
 
                 <xpath expr="//tree/field[@name='price_total']" position="before">
                     <field name="mga_profit_margin" readonly="1"/>

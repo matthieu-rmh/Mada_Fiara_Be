@@ -126,6 +126,7 @@ class SaleOrder(models.Model):
 
     total_profit_margin = fields.Float(string="Profit margin", store=False, compute='_compute_total_profit_margin')
     total_cost_price = fields.Float(string="Total cost", store=False, compute='_compute_total_cost_price')
+    date_entry = fields.Datetime(string="Date Entry",required=True,help="Date entry",default=fields.Datetime.now)
 
     def _compute_total_profit_margin(self):
         for rec in self:
