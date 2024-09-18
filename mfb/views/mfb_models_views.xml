@@ -450,20 +450,7 @@
         <!-- MFB Vehicle views END -->
 
 
-         <!-- MFB Entry date search views -->
-        
-        <record id="sale_order_view_search_custom" model="ir.ui.view">
-            <field name="name">sale.order.search.entry.date</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_quotation_search"/>
-            <field name="arch" type="xml">
-                <!-- Remplacer le filtre sur 'create_date' par 'x_custom_date' -->
-                <filter name="create_date" position="replace">
-                    <filter string="Date de saisie" name="date_entry" date="date_entry"/>
-                </filter>
-            </field>
-        </record>
-         <!-- MFB Entry date searcb views -->
+     
 
 
     </data>
