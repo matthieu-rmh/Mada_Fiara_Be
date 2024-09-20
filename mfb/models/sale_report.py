@@ -3,10 +3,12 @@ from odoo import models, fields
 class SaleReport(models.Model):
     _inherit = 'sale.report'
 
-    date_entry = fields.Datetime(string="Date de saisie")
+    date_entry = fields.Datetime(string="Date de saisie", readonly=True)
 
-    def _select(self):
-        return super(SaleReport, self)._select() + ", s.date_entry as date_entry"
-
-    def _group_by(self):
-        return super(SaleReport, self)._group_by() + ", s.date_entry"
+    def _select_additional_fields(self):
+        res = super()._select_additional_fields()
+        res['date_entry'] = f"""SUM(l.date_entry
+        / {self._case_value_or_one('s.currency_rate')}
+        * {self._case_value_or_one('currency_table.rate')})
+        """
+        return res
