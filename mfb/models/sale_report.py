@@ -7,7 +7,7 @@ class SaleReport(models.Model):
 
     def _select_additional_fields(self):
         res = super()._select_additional_fields()
-        res['date_entry'] = f"""SUM(l.date_entry
+        res['date_entry'] = f"""SUM(s.date_entry
         / {self._case_value_or_one('s.currency_rate')}
         * {self._case_value_or_one('currency_table.rate')})
         """
