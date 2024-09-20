@@ -5,7 +5,8 @@ class SaleReport(models.Model):
 
     date_entry = fields.Datetime(string="Date de saisie", readonly=True)
 
-    def _select_additional_fields(self):
-        res = super()._select_additional_fields()
-        res['date_entry'] = f", s.date_entry"
-        return res
+    def _select(self):
+        return super()._select() + ", s.date_entry as date_entry"
+
+    def _group_by(self):
+        return super()._group_by() + ", s.date_entry"
