@@ -8,6 +8,7 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     mga_product_cost_price = fields.Float(string="MGA Cost price")
+    categ_value = fields.Char(string="Catégorie de produit", compute='_compute_categ_value')
     mga_profit_margin = fields.Float(string="MGA profit margin", store=True, compute='_compute_mga_profit_margin')
     pricelist_id = fields.Many2one(string="Pricelist", comodel_name='product.pricelist', readonly=True)
     order_date = fields.Datetime('Order date', compute='_compute_order_date', store=False)
@@ -20,6 +21,11 @@ class SaleOrderLine(models.Model):
     def _compute_order_date(self):
         for rec in self:
             rec.order_date = rec.order_id.date_order
+
+    @api.depends('product_id')
+    def _compute_categ_value(self):
+        for rec in self:
+            rec.categ_value = rec.product_id.categ_id.name
 
     @api.depends('price_total', 'mga_product_cost_price')
     def _compute_mga_profit_margin(self):
