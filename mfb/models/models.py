@@ -74,7 +74,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     aed_currency_id = fields.Many2one('res.currency', 'AED Currency', compute='_compute_aed_currency_id')
-    mga_cost_price = fields.Float(string="MGA Cost price")
+    mga_cost_price = fields.Float(string="MGA Cost price", compute='_compute_mga_cost_price')
 
     def _set_initial_product_cost(self):
         product_templates = self.env['product.template'].sudo().search([])
@@ -96,6 +96,19 @@ class ProductTemplate(models.Model):
     def _compute_aed_currency_id(self):
         for rec in self:
             rec.aed_currency_id = self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1)
+
+    @api.depends('standard_price')
+    def _compute_mga_cost_price(self) :
+        # get currency rates of AED currency
+        currency_rates = self.env['res.currency.rate'].sudo().search([('currency_id', '=', 
+                                                                        self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1).id
+                                                                        )])     
+        # get the latest aed currency rate
+        latest_rate = max(currency_rates,  key=lambda x: x.name)
+
+        for product in self:
+            product.mga_cost_price = product.standard_price * latest_rate.inverse_company_rate
+
 
 
 class AccountMoveLine(models.Model):
