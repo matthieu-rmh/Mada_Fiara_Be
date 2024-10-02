@@ -116,7 +116,7 @@ class ProductTemplate(models.Model):
         latest_rate = max(currency_rates,  key=lambda x: x.name)
 
         for product in self:
-            mga_cost = product.standard_price * latest_rate.inverse_company_rate if product.standard_price < 2251 and rec.default_code not in mga_products else product.standard_price
+            mga_cost = product.standard_price * latest_rate.inverse_company_rate if product.standard_price < 2251 and product.default_code not in mga_products else product.standard_price
             product.mga_cost_price = mga_cost
 
 
