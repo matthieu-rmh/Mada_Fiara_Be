@@ -101,13 +101,13 @@ class ProductTemplate(models.Model):
             })
 
     def _compute_aed_currency_id(self):
-        mga_products = ['H19316']
+        mga_products = ['H19316', '4230']
         for rec in self:
             rec.aed_currency_id = self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1) if rec.standard_price  < 2251 and rec.default_code not in mga_products else self.env['res.currency'].sudo().search([('name', '=', 'MGA')], limit=1)
 
     @api.depends('standard_price')
     def _compute_mga_cost_price(self) :
-        mga_products = ['H19316']
+        mga_products = ['H19316', '4230']
         # get currency rates of AED currency
         currency_rates = self.env['res.currency.rate'].sudo().search([('currency_id', '=', 
                                                                         self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1).id
