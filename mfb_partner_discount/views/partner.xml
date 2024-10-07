@@ -7,12 +7,10 @@
             <field name="arch" type="xml">
               
                  <xpath expr="//field[@name='category_id']" position="after">
-                    <group>
                         <field name="customer_discount"/>
-                    </group>
                 </xpath>
                
-
+            </field>
         </record>
     </data>
 </odoo>
