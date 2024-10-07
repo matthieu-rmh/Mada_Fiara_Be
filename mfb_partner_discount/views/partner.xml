@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="mfb_partner_discount_view_form">
+            <field name="name">mfb.partner.form.discount</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+              
+                 <xpath expr="//page[@string='Sales & Purchases']" position="inside">
+                    <group>
+                        <field name="customer_discount"/>
+                    </group>
+                </xpath>
+               
+
+        </record>
+    </data>
+</odoo>
