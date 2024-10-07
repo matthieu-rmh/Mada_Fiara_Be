@@ -37,9 +37,12 @@ class SaleOrderLine(models.Model):
 
 
     def create(self, vals):
-        product_template  = self.env['product.template'].browse(vals['product_template_id'])
-        vals['mga_product_cost_price'] = product_template.mga_cost_price * vals['product_uom_qty']
-        vals['pricelist_id'] = self.env['sale.order'].browse(vals['order_id']).pricelist_id.id
+        if 'product_template_id' in vals :
+            product_template  = self.env['product.template'].browse(vals['product_template_id'])
+            vals['mga_product_cost_price'] = product_template.mga_cost_price * vals['product_uom_qty']
+
+        if 'order_id' in vals :
+            vals['pricelist_id'] = self.env['sale.order'].browse(vals['order_id']).pricelist_id.id
         return super(SaleOrderLine, self).create(vals)
 
     def write(self, vals):
