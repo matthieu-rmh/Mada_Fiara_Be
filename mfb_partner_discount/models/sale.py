@@ -13,3 +13,17 @@ class SaleOrder(models.Model):
             for line in self.order_line:
                 line.discount = discount
 
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    @api.onchange('product_id')
+    def _onchange_product_id(self):
+        """
+        Automatically applies the discount from the customer when the product is selected.
+        """
+        for line in self :
+            if line.order_id.partner_id and line.order_id.partner_id.customer_discount:
+                discount = line.order_id.partner_id.customer_discount
+                line.discount = discount
+                    
