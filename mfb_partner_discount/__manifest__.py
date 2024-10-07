@@ -10,7 +10,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         # 'views/mfb_sale_order.xml',
-        'cron/partner.xml'
+        'view/partner.xml'
     ],
     'installable': True,
     'application': True,
