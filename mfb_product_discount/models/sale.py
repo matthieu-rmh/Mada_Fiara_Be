@@ -24,4 +24,12 @@ class SaleOrderLine(models.Model):
                 elif line.product_id.product_discount > 0 :
                     discount = line.product_id.product_discount
                     line.discount = discount
+
+    @api.onchange('discount')
+    def _onchange_discount(self):
+        
+        for line in self :
+            if line.product_id.disable_discount :
+                line.discount = 0
+            
                         
