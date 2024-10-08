@@ -46,14 +46,16 @@ class SaleOrderLine(models.Model):
         return super(SaleOrderLine, self).create(vals)
 
     def write(self, vals):
+        for line in self :
+            qty = vals['product_uom_qty'] if 'product_uom_qty' in vals else line.product_uom_qty
 
-        qty = vals['product_uom_qty'] if 'product_uom_qty' in vals else self.product_uom_qty
+            vals['mga_product_cost_price'] = line.product_template_id.mga_cost_price * qty
 
-        vals['mga_product_cost_price'] = self.product_template_id.mga_cost_price * qty
+            vals['pricelist_id'] = line.order_id.pricelist_id.id
 
-        vals['pricelist_id'] = self.order_id.pricelist_id.id
+            super(SaleOrderLine, line).write(vals)
 
-        return super(SaleOrderLine, self).write(vals)
+        return True
 
 
 class PurchaseOrder(models.Model):
