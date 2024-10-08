@@ -10,7 +10,7 @@ class SaleOrderLine(models.Model):
         Automatically applies the discount from the product when the product is selected.
         """
         for line in self :
-            if line.disable_discount :
+            if line.product_id.disable_discount :
                 line.discount = 0
             else :
                 if line.order_id.partner_id and line.order_id.partner_id.customer_discount > 0 :
