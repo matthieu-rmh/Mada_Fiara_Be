@@ -8,6 +8,7 @@
               
                  <xpath expr="//field[@name='categ_id']" position="after">
                         <field name="product_discount"/>
+                        <field name="disable_discount"/>
                 </xpath>
                
             </field>
