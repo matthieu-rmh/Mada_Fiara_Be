@@ -101,7 +101,7 @@ class ProductTemplate(models.Model):
 
         # update each product template mga_cost_price in the purchase order by the latest_rate * inverse_company_rate 
         for  product_template in product_templates:
-            mga_cost = product_template.standard_price * latest_rate.inverse_company_rate if product_template.standard_price < 2251 and not product.force_currency_mga else product_template.standard_price
+            mga_cost = product_template.standard_price * latest_rate.inverse_company_rate if product_template.standard_price < 2251 and not product_template.force_currency_mga else product_template.standard_price
             product_template.write({
                 'mga_cost_price': mga_cost
             })
@@ -109,7 +109,7 @@ class ProductTemplate(models.Model):
     def _compute_aed_currency_id(self):
         # mga_products = ['H19316', '4230']
         for rec in self:
-            rec.aed_currency_id = self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1) if rec.standard_price  < 2251 and not product.force_currency_mga else self.env['res.currency'].sudo().search([('name', '=', 'MGA')], limit=1)
+            rec.aed_currency_id = self.env['res.currency'].sudo().search([('name', '=', 'AED')], limit=1) if rec.standard_price  < 2251 and not rec.force_currency_mga else self.env['res.currency'].sudo().search([('name', '=', 'MGA')], limit=1)
 
     @api.depends('standard_price')
     def _compute_mga_cost_price(self) :
