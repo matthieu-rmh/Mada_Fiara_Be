@@ -1,5 +1,18 @@
 <odoo>
     <data>
+        <!-- FORCE MGA PRICE -->
+      <record model="ir.ui.view" id="mfb_force_mga_price_view_form">
+            <field name="name">mfb.force.product.mga.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+              
+                 <xpath expr="//field[@name='categ_id']" position="after">
+                        <field name="force_currency_mga"/>
+                </xpath>
+               
+            </field>
+        </record>
 
     <!-- SALE.ORDER / LINE VIEW FORM START -->
     <record model="ir.ui.view" id="mfb_sale_order_view_form">
