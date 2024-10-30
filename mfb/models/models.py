@@ -190,9 +190,12 @@ class HrExpense(models.Model):
 
     def action_cancel_validated_expense(self) :
         self._check_can_refuse()
-        self.write({'state': 'refused'})
+        self.write({'state': 'cancel'})
         self.write({'payment_state':'not_paid'})
         self.activity_update()
+
+        for line in expense_line_ids :
+            line.write({'state': 'refused'})
     
 
 class HrExpense(models.Model):
