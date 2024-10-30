@@ -196,7 +196,6 @@
                      <xpath expr="//header" position="inside">
                         <button name="action_cancel_validated_expense" string="Annuler" invisible="state not in ('done')" type="object" groups="hr_expense.group_hr_expense_team_approver" data-hotkey="x"/>
                       </xpath>
-                    </xpath>
                 </field>
         </record>
     <!-- HR.EXPENSE SHEET FORM  INHERITANCE END -->
