@@ -146,12 +146,6 @@ msgstr ""
 
 #. module: mfb
 #: model:ir.model.fields,field_description:mfb.field_hr_expense__auto_part
-#: model:ir.model.fields,field_description:mfb.field_hr_expense__str_auto_part
-msgid "Auto part"
-msgstr "Pièce"
-
-#. module: mfb
-#: model:ir.model.fields,field_description:mfb.field_hr_expense__auto_part
 #: model:ir.model.fields,field_description:mfb.field_hr_expense__auto_part_vehicle
 msgid "Fueled vehicle"
 msgstr "Véhicule"
