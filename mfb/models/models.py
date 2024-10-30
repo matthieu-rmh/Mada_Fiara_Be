@@ -247,6 +247,7 @@ class HrExpense(models.Model):
     # Autopart purchase type
     auto_part = fields.Many2one("product.template", string="Auto part")
     str_auto_part = fields.Char(string="Auto part")
+    auto_part_vehicle =  fields.Many2one("mfb.vehicle", string="Fueled vehicle")
 
 
 

@@ -178,7 +178,7 @@
                         <field name="fuel_type" invisible="not is_fuel_type"/>
                         <field name="fuel_qty" invisible="not is_fuel_type"/>
                         <!--  AUTOPART PURCHASE FIELDS -->
-                        <field name="str_auto_part" invisible="not is_autopart_purchase_type"/>
+                        <field name="auto_part_vehicle" invisible="not is_autopart_purchase_type"/>
                         <!--  EXPENSE STORE -->
                         <field name="expense_store" string="Nom du Magasin" />
                     </xpath>
