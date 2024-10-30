@@ -188,6 +188,7 @@ class ResCompany(models.Model):
 class HrExpense(models.Model):
     _inherit = 'hr.expense'
 
+
     @api.onchange("product_id")
     def _onchange_employee_id(self):
         if self.product_id and self.product_id.is_jirama_type:
@@ -282,6 +283,10 @@ class HrExpense(models.Model):
                 if record.product_id.is_autopart_purchase_type:
                     is_autopart_purchase = True
             record.is_autopart_purchase_type = is_autopart_purchase
+
+    def action_cancel_validated_expense(self) :
+        self.write({'is_refused': True})
+        self.sheet_id.write({'state': 'cancel'})
 
     
 
