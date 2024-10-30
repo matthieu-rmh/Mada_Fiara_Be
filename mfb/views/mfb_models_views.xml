@@ -155,10 +155,7 @@
                 <field name="model">hr.expense</field>
                 <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
                 <field name="arch" type="xml">
-                     <xpath expr="//header" position="inside">
-                        <button name="action_cancel_validated_expense" string="Annuler" invisible="state not in ('done')" type="object" groups="hr_expense.group_hr_expense_team_approver" data-hotkey="x"/>
-                      </xpath>
-
+                     
                 
                     <xpath expr="//group[1]/group[1]" position="inside">
                         <!-- BOOLEAN TYPE FIELDS -->
@@ -189,6 +186,20 @@
                 </field>
         </record>
     <!-- HR.EXPENSE FORM INHERITANCE END -->
+
+    <!-- HR.EXPENSE SHEET FORM INHERITANCE START -->
+    <record model="ir.ui.view" id="mfb_hr_expense_sheet">
+                <field name="name">mfb.hr.expense.sheet.form</field>
+                <field name="model">hr.expense.sheet</field>
+                <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+                <field name="arch" type="xml">
+                     <xpath expr="//header" position="inside">
+                        <button name="action_cancel_validated_expense" string="Annuler" invisible="state not in ('done')" type="object" groups="hr_expense.group_hr_expense_team_approver" data-hotkey="x"/>
+                      </xpath>
+                    </xpath>
+                </field>
+        </record>
+    <!-- HR.EXPENSE SHEET FORM  INHERITANCE END -->
 
     <!-- EXPENSE CATEGORY INHERITANCE START -->
         <record model="ir.ui.view" id="mfb_expense_category_form">

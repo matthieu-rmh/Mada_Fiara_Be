@@ -186,6 +186,15 @@ class ResCompany(models.Model):
     subname = fields.Char(string="Subname")
 
 class HrExpense(models.Model):
+    _inherit = 'hr.expense.sheet'
+
+    def action_cancel_validated_expense(self) :
+        self._check_can_refuse()
+        self.sheet_id.write({'state': 'cancel'})
+        self.activity_update()
+    
+
+class HrExpense(models.Model):
     _inherit = 'hr.expense'
 
 
@@ -283,10 +292,6 @@ class HrExpense(models.Model):
                 if record.product_id.is_autopart_purchase_type:
                     is_autopart_purchase = True
             record.is_autopart_purchase_type = is_autopart_purchase
-
-    def action_cancel_validated_expense(self) :
-        self.write({'is_refused': True})
-        self.sheet_id.write({'state': 'cancel'})
 
     
 
