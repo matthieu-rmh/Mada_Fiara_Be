@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="rnk_sale_confirm.list">
+      <field name="name">rnk_sale_confirm list</field>
+      <field name="model">rnk_sale_confirm.rnk_sale_confirm</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="rnk_sale_confirm.action_window">
+      <field name="name">rnk_sale_confirm window</field>
+      <field name="res_model">rnk_sale_confirm.rnk_sale_confirm</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="rnk_sale_confirm.action_server">
+      <field name="name">rnk_sale_confirm server</field>
+      <field name="model_id" ref="model_rnk_sale_confirm_rnk_sale_confirm"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="rnk_sale_confirm" id="rnk_sale_confirm.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="rnk_sale_confirm.menu_1" parent="rnk_sale_confirm.menu_root"/>
+    <menuitem name="Menu 2" id="rnk_sale_confirm.menu_2" parent="rnk_sale_confirm.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="rnk_sale_confirm.menu_1_list" parent="rnk_sale_confirm.menu_1"
+              action="rnk_sale_confirm.action_window"/>
+    <menuitem name="Server to list" id="rnk_sale_confirm" parent="rnk_sale_confirm.menu_2"
+              action="rnk_sale_confirm.action_server"/>
+-->
+  </data>
+</odoo>
