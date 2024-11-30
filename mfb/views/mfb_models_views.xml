@@ -182,6 +182,8 @@
                         <field name="auto_part_vehicle" string="Véhicule" invisible="not is_autopart_purchase_type"/>
                         <!--  EXPENSE STORE -->
                         <field name="expense_store" string="Nom du Magasin" />
+                        <!--  TECHNICAL VISIT -->
+                        <field name="technical_visit_vehicle" string="Véhicule" invisible="not is_technical_visit_type" />
                     </xpath>
                 </field>
         </record>

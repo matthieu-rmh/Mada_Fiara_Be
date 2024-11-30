@@ -209,31 +209,43 @@ class HrExpense(models.Model):
             self.is_insurance_type = False
             self.is_fuel_type = False
             self.is_autopart_purchase_type = False
+            self.is_technical_visit_type = False
         if self.product_id and self.product_id.is_insurance_type:
             self.is_jirama_type = False
             self.is_insurance_type = True
             self.is_fuel_type = False
             self.is_autopart_purchase_type = False
+            self.is_technical_visit_type = False
         if self.product_id and self.product_id.is_fuel_type:
             self.is_jirama_type = False
             self.is_insurance_type = False
             self.is_fuel_type = True
             self.is_autopart_purchase_type = False
+            self.is_technical_visit_type = False
         if self.product_id and self.product_id.is_autopart_purchase_type:
             self.is_jirama_type = False
             self.is_insurance_type = False
             self.is_fuel_type = False
             self.is_autopart_purchase_type = True
+            self.is_technical_visit_type = False
         elif self.product_id and not self.product_id.is_jirama_type and not self.product_id.is_insurance_type and not self.product_id.is_fuel_type and not self.product_id.is_autopart_purchase_type:
             self.is_jirama_type = False
             self.is_insurance_type = False
             self.is_fuel_type = False
             self.is_autopart_purchase_type = False
+            self.is_technical_visit_type = False
+        if self.product_id and self.product_id.is_technical_visit_type:
+            self.is_jirama_type = False
+            self.is_insurance_type = False
+            self.is_fuel_type = False
+            self.is_autopart_purchase_type = False
+            self.is_technical_visit_type = True
 
     is_jirama_type = fields.Boolean(compute="_compute_is_jirama_type")
     is_insurance_type = fields.Boolean(compute="_compute_is_insurance_type")
     is_fuel_type = fields.Boolean(compute="_compute_is_fuel_type")
     is_autopart_purchase_type = fields.Boolean(compute="_compute_is_autopart_purchase_type")
+    is_technical_visit_type = fields.Boolean(compute="_compute_is_technical_visit_type")
 
     # Jirama type fields
     jirama_new_index = fields.Char(string="Jirama new index")
@@ -263,6 +275,8 @@ class HrExpense(models.Model):
     str_auto_part = fields.Char(string="Auto part")
     auto_part_vehicle =  fields.Many2one("mfb.vehicle", string="Fueled vehicle")
 
+    # technical visit
+    technical_visit_vehicle = fields.Many2one("mfb.vehicle", string="Fueled vehicle")
 
 
     def _compute_is_jirama_type(self):
@@ -297,6 +311,14 @@ class HrExpense(models.Model):
                     is_autopart_purchase = True
             record.is_autopart_purchase_type = is_autopart_purchase
 
+    def _compute_is_technical_visit_type(self):
+        for record in self:
+            is_technical_visit = False
+            if record.product_id:
+                if record.product_id.is_technical_visit_type:
+                    is_technical_visit = True
+            record.is_technical_visit_type = is_technical_visit
+
     
 
 
@@ -307,6 +329,7 @@ class ProductProduct(models.Model):
     is_insurance_type = fields.Boolean(string="Is Insurance type", default=False)
     is_fuel_type = fields.Boolean(string="Is Fuel type", default=False)
     is_autopart_purchase_type = fields.Boolean(string="Is Autopart Purchase type", default=False)
+    is_technical_visit_type = fields.Boolean(string="Is Technical Visit type", default=False)
 
 class MfbVehicle(models.Model):
     _name = 'mfb.vehicle'
