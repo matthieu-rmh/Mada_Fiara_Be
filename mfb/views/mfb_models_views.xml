@@ -163,6 +163,7 @@
                         <field name="is_insurance_type" invisible="1"/>
                         <field name="is_fuel_type" invisible="1"/>
                         <field name="is_autopart_purchase_type" invisible="1"/>
+                        <field name="is_technical_visit_type" invisible="1"/>
                         <!-- JIRAMA FIELDS -->
                         <field name="jirama_old_index" invisible="not is_jirama_type"/>
                         <field name="old_index_date" invisible="not is_jirama_type"/>
