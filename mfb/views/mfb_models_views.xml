@@ -215,6 +215,7 @@
                         <field name="is_insurance_type"/>
                         <field name="is_fuel_type"/>
                         <field name="is_autopart_purchase_type"/>
+                        <field name="is_technical_visit_type"/>
                     </xpath>
                 </field>
         </record>
