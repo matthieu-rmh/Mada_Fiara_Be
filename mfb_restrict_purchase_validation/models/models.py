@@ -11,7 +11,7 @@ class PurchaseOrderLine(models.Model):
         """
         for line in self:
             if line.product_id:
-                raise UserError(str(line.product_id.standard_price))
+                # raise UserError(str(line.product_id.standard_price))
                 # Récupère le coût du produit
                 line.price_unit = line.product_id.standard_price
             else:
