@@ -9,7 +9,6 @@ class PurchaseOrderLine(models.Model):
         """
         Met à jour le coût lorsque le produit est sélectionné.
         """
-        raise UserError("fako")
         for line in self:
             if line.product_id:
                 # Récupère le coût du produit
