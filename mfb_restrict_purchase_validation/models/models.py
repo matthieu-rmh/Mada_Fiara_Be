@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
@@ -8,6 +9,7 @@ class PurchaseOrderLine(models.Model):
         """
         Met à jour le coût lorsque le produit est sélectionné.
         """
+        raise UserError("fako")
         for line in self:
             if line.product_id:
                 # Récupère le coût du produit
