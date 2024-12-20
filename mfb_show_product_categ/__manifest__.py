@@ -10,7 +10,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/purchase.xml',
-        # 'cron/sale_price_alert.xml'
+         'views/stock.xml',
     ],
     'installable': True,
     'application': True,

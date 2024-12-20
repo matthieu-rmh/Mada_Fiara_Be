@@ -2,8 +2,8 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from datetime import datetime, timedelta
 
-class SaleOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
+class StockMove(models.Model):
+    _inherit = 'stock.move'
 
     categ_value = fields.Char(string="Catégorie de produit", compute='_compute_categ_value')
 
