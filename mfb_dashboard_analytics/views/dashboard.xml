@@ -1,36 +1,31 @@
 <odoo>
     <data>
-        <record id="view_dashboard_expenses_revenues" model="ir.ui.view">
-            <field name="name">Dashboard Expenses and Revenues</field>
-            <field name="model">hr.expense</field>
-            <field name="arch" type="xml">
-                <kanban>
-                    <field name="graph_group_fields" eval="['date']"/>
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="o_kanban_record">
-                                <div class="o_kanban_record_body">
-                                    <field name="total_amount"/>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
+       <menuitem id="menu_sale_order_analysis" 
+              name="Commandes par jour" 
+              parent="sale.sale_order_report"
+              sequence="20"
+              action="action_dashboard_analysis_graph_view"/>
 
-        <record id="view_graph_expenses_revenues" model="ir.ui.view">
-            <field name="name">Graph Expenses and Revenues</field>
-            <field name="model">hr.expense</field>
-            <field name="arch" type="xml">
-                <graph string="Expenses and Revenues">
-                    <field name="date" type="row"/>
-                    <field name="amount" type="measure"/>
-                </graph>
-            </field>
-        </record>
 
-        <menuitem id="menu_dashboard" name="Dashboard" parent="menu_sales" action="action_dashboard_expenses_revenues"/>
+    <!-- Graph View -->
+    <record id="view_sale_order_graph" model="ir.ui.view">
+        <field name="name">sale.order.graph</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <graph string="Commandes par jour" type="line">
+                <field name="order_day" type="row"/>
+                <field name="amount_total" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+     <!-- Action -->
+    <record id="action_sale_order_graph_view" model="ir.actions.act_window">
+        <field name="name">Commandes par jour</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_sale_order_graph"/>
+    </record>
 
     </data>
 </odoo>
