@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <record id="view_dashboard_expenses_revenues" model="ir.ui.view">
+            <field name="name">Dashboard Expenses and Revenues</field>
+            <field name="model">hr.expense</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="graph_group_fields" eval="['date']"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_record">
+                                <div class="o_kanban_record_body">
+                                    <field name="total_amount"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_graph_expenses_revenues" model="ir.ui.view">
+            <field name="name">Graph Expenses and Revenues</field>
+            <field name="model">hr.expense</field>
+            <field name="arch" type="xml">
+                <graph string="Expenses and Revenues">
+                    <field name="date" type="row"/>
+                    <field name="amount" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <menuitem id="menu_dashboard" name="Dashboard" parent="menu_sales" action="action_dashboard_expenses_revenues"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="group_restrict_stock_modification" model="res.groups">
+        <field name="name">Bloquer le changement de stock</field>
+    </record>
+
+
+</odoo>
