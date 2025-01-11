@@ -43,17 +43,7 @@
 							<action name="%(mfb_dashboard_analytics.action_sale_order_graph_view)d" id="sale_of_the_day" string="Sale of the day"/>
 						</column>
 					</board>
-					<!-- <board >
-						<column>
-							<action name="%(sales_dashboard.action_order_evolution_graph)d" string="Turnover Evolution"/>
-						</column>
-						<column>
-							<action name="%(sales_dashboard.action_month_orders_graph)d" string="Orders of The Month"/>
-						</column>
-						<column>
-							<action name="%(sales_dashboard.action_orders_state_graph)d" string="Orders State"/>
-						</column>
-					</board> -->
+				
 				</form>
 			</field>
 		</record>
