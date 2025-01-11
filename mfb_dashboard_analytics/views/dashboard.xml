@@ -10,6 +10,7 @@
             <graph string="Commandes par jour" type="line">
                 <field name="date_entry" type="row"/>
                 <field name="amount_total" type="measure"/>
+                 <field name="amount_tax" type="measure" string="Montant Taxe"/>
             </graph>
         </field>
     </record>
