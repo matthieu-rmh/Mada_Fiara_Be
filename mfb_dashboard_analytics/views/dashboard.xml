@@ -2,7 +2,7 @@
     <data>
        <menuitem id="menu_sale_order_analysis" 
               name="Commandes par jour" 
-              parent="sale.sale_order_report"
+              parent="sale.menu_sale_report"
               sequence="20"
               action="action_dashboard_analysis_graph_view"/>
 
