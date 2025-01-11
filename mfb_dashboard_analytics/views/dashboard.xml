@@ -1,11 +1,6 @@
 <odoo>
     <data>
-       <!-- Menu Item -->
-    <menuitem id="menu_sale_order_analysis" 
-              name="Commandes par jour" 
-              parent="sale.menu_sale_report"
-              sequence="20"
-              action="action_sale_order_graph_view"/>
+      
 
     <!-- Graph View -->
     <record id="view_sale_order_graph" model="ir.ui.view">
@@ -26,6 +21,13 @@
         <field name="view_mode">graph</field>
         <field name="view_id" ref="view_sale_order_graph"/>
     </record>
+
+     <!-- Menu Item -->
+    <menuitem id="menu_sale_order_analysis" 
+              name="Commandes par jour" 
+              parent="sale.menu_sale_report"
+              sequence="20"
+              action="action_sale_order_graph_view"/>
 
     </data>
 </odoo>
