@@ -8,7 +8,7 @@
 
 
     <!-- Graph View -->
-    <record id="view_sale_order_graph" model="ir.ui.view">
+    <record id="view_dashboard_analysis_graph" model="ir.ui.view">
         <field name="name">sale.order.graph</field>
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
@@ -20,11 +20,11 @@
     </record>
 
      <!-- Action -->
-    <record id="action_sale_order_graph_view" model="ir.actions.act_window">
+    <record id="action_dashboard_analysis_graph_view" model="ir.actions.act_window">
         <field name="name">Commandes par jour</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">graph</field>
-        <field name="view_id" ref="view_sale_order_graph"/>
+        <field name="view_id" ref="view_dashboard_analysis_graph"/>
     </record>
 
     </data>
