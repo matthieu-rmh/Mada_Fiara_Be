@@ -52,7 +52,7 @@
 										<span class="fa fa-arrow-right text-white"/>
 									</div>
 								</div>
-								<ChartRenderer name="'daily_order'" type="'line'" title="'Evolution commandes journalières'" />
+								<ChartRenderer name="'daily_profit'" type="'line'" title="'Evolution bénéfice par jour'" />
 							</div>
 						</div>
 					</div>

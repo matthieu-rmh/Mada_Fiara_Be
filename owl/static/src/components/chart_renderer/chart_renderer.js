@@ -137,7 +137,7 @@ export class ChartRenderer extends Component {
 
         this.state.data.datasets = datasets
 
-      }else if(this.props.name == 'daily_order') {
+      }else if(this.props.name == 'daily_profit') {
         const labels =  this.getDayName()
         this.state.data.labels = labels
 
@@ -145,20 +145,25 @@ export class ChartRenderer extends Component {
         // const 
         
         // const current_revenues = await this.orm.readGroup('sale.order', domain, ["amount_total:sum"], [''])
-        let revenues = []
+        let profits = []
         let i=10
         labels.forEach(async (label) => {
           let start = label+ " 00:00:00"
           let end = label+ " 23:59:59"
-          let domain = [['user_id', '=', session.uid],['state', 'in', ['sale']],['date_order', '>=', start],['date_order', '<=', end]]
-          let amount = await this.orm.readGroup('sale.order', domain, ["amount_total:sum"], [])
-          revenues.push(amount[0].amount_total ? amount[0].amount_total : 0)
+          let domain = [['state', 'in', ['sale']],['date_order', '>=', start],['date_order', '<=', end]]
+          let edomain = [['state', 'in', ['done']],['date', '>=', start],['date', '<=', end]]
+
+          const amount_order = await this.orm.readGroup('sale.order', domain, ["amount_total:sum"], [])
+          const amount_expense = await this.orm.readGroup('hr.expense', edomain, ["total_amount_currency:sum"], [])
+          const total_order = amount_order[0].amount_total ? amount_order[0].amount_total : 0
+          const total_expense = amount_expense[0].total_amount_currency ? amount_expense[0].total_amount_currency : 0
+          profits.push(total_order - total_expense)
         })
         
         const datasets = [
           {
-            label: 'Evolution commandes par jour',
-            data: revenues,
+            label: 'Evolution bénéfice par jour',
+            data: profits,
             hoverOffset: 4
           }
         ]
