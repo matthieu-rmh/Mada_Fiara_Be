@@ -14,7 +14,8 @@ export class ChartRenderer extends Component {
             labels:[],
             datasets:[]
           },
-          period: 30
+          period: 30,
+          store:"tous"
         })
         this.orm = useService('orm')
 
@@ -27,6 +28,10 @@ export class ChartRenderer extends Component {
         })
 
         onMounted(() => this.renderChart())
+    }
+
+    onChangeStore() {
+      console.log(this.state.store)
     }
 
     getDates () {
