@@ -37,20 +37,12 @@ export class OwlSalesDashboard extends Component {
         onWillStart(async () => {
             this.getDates()
             await this.getOrders()
-            await this.getVisits()
-            await this.getRatioOrdersVisits()
-            await this.getAmountToBeDone()
-            await this.getDayRemain()
-            await this.getVisitsOfTheDay()
         })
     }
 
     async onChangePeriod() {
         this.getDates()
         await this.getOrders()
-        await this.getVisits()
-        await this.getRatioOrdersVisits()
-        await this.getAmountToBeDone()
     }
 
     getDates () {
@@ -131,13 +123,7 @@ export class OwlSalesDashboard extends Component {
         }
     }
 
-    async getVisitsOfTheDay() {
-        let domain = [['user_id', '=', session.uid], ['start', '>=', this.getTodayStart()], ['stop', '<=', this.getTodayEnd()]]
     
-        const data = await this.orm.searchRead('calendar.event', domain)
-        console.log("data", data)
-        this.state.visits_of_the_day = data
-    }
 
     async getAmountToBeDone() {
         const domain = [['user_id', '=', session.uid],['state', 'in', ['sale']],['date_order', '>=', this.state.date]]
@@ -195,64 +181,8 @@ export class OwlSalesDashboard extends Component {
             
     }
 
-    async getVisits() {
-        let domain = [['user_id', '=', session.uid]]
-        if(this.state.period > 0) {
-            domain.push(['start', '>=', this.state.date])
-        }
-        const data = await this.orm.searchCount('calendar.event', domain)
-        this.state.visits.value = data
-
-        // previous period
-        let prev_domain = [['user_id', '=', session.uid]]
-        if(this.state.period > 0) {
-            prev_domain.push(['start', '>=', this.state.previous_date], ['start', '<',this.state.date])
-        }
-        const prev_data = await this.orm.searchCount('calendar.event', prev_domain)
-        const percentage = prev_data != 0 ?((data - prev_data)/prev_data) * 100 : 0
-        this.state.visits.percentage = percentage.toFixed(2)
-            
-    }
-    async getRatioOrdersVisits() {
-        // orders
-        let _domain = [['user_id', '=', session.uid],['state', 'in', ['sale']]]
-        if(this.state.period > 0) {
-            _domain.push(['date_order', '>=', this.state.date])
-        }
-        const order_data = await this.orm.searchCount('sale.order', _domain)
-
-        // previous period
-        let _prev_domain = [['user_id', '=', session.uid],['state', 'in', ['sale']]]
-        if(this.state.period > 0) {
-            _prev_domain.push(['date_order', '>=', this.state.previous_date], ['date_order', '<',this.state.date])
-        }
-        const prev_order_data = await this.orm.searchCount('sale.order', _prev_domain)
-
-
-
-        // visit
-        let domain = [['user_id', '=', session.uid],]
-        if(this.state.period > 0) {
-            domain.push(['start', '>=', this.state.date])
-        }
-        const visit_data = await this.orm.searchCount('calendar.event', domain)
-
-        // previous visit
-        let prev_domain = [['user_id', '=', session.uid]]
-        if(this.state.period > 0) {
-            prev_domain.push(['start', '>=', this.state.previous_date], ['start', '<',this.state.date])
-        }
-        const prev_visit_data = await this.orm.searchCount('calendar.event', prev_domain)
-        
-        // ratio order visit
-        const ratio_order_visit = visit_data != 0 ?(order_data/visit_data) * 100 : 0
-        this.state.ratio_orders_visits.value = ratio_order_visit + "%"
-
-        // previous ratio order visit
-        const prev_ratio_order_visit = prev_visit_data != 0 ?(prev_order_data/prev_visit_data) * 100 : 0
-        const percentage = prev_ratio_order_visit != 0 ?((ratio_order_visit - prev_ratio_order_visit)/prev_ratio_order_visit) * 100 : 0
-        this.state.ratio_orders_visits.percentage = percentage.toFixed(2)
-    }
+    
+   
     
 }
 
