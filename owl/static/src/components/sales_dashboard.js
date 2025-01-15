@@ -177,7 +177,29 @@ export class OwlSalesDashboard extends Component {
  
 
     renderChart() {
-        
+        new Chart(
+            this.chartDailyProfitRef.el,
+            {
+              type: "line",
+              data: {
+                labels: this.state.data_daily_profit.labels,
+                datasets: this.state.data_daily_profit.datasets
+              },
+              options: {
+                responsive: true, 
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display:true,
+                        text:'Evolution bénéfice par jour',
+                        position:'bottom'
+                    }
+                }
+              }
+            }
+          );
 
         new Chart(
             this.chartOrderExpenseRef.el,
@@ -204,29 +226,7 @@ export class OwlSalesDashboard extends Component {
           );
 
 
-          new Chart(
-            this.chartDailyProfitRef.el,
-            {
-              type: "line",
-              data: {
-                labels: this.state.data_daily_profit.labels,
-                datasets: this.state.data_daily_profit.datasets
-              },
-              options: {
-                responsive: true, 
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    },
-                    title: {
-                        display:true,
-                        text:'Evolution bénéfice par jour',
-                        position:'bottom'
-                    }
-                }
-              }
-            }
-          );
+          
     }
 
     async onChangeStore() {
