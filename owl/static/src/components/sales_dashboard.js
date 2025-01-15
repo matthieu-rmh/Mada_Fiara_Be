@@ -10,6 +10,7 @@ const { Component, onWillStart, useRef, onMounted, useState } = owl
 
 export class OwlSalesDashboard extends Component {
     setup() {
+        this.chartOrderExpenseRef = useRef("chart_order_per_expense")
         this.state = useState({
             orders: {
                  value:0,
@@ -30,15 +31,117 @@ export class OwlSalesDashboard extends Component {
             visits_of_the_day: [],
             day_remain:0,
             period: 30,
-            store: "tous"
+            store: "tous",
+            data_order_expense: {
+                labels:[],
+                datasets:[]
+              }
         })
         this.orm = useService('orm')
         this.actionService = useService("action")
 
         onWillStart(async () => {
+            await loadJS("/owl/static/src/lib/chart.umd.min.js")
             this.getDates()
             await this.getOrders()
+            await this.getDataOrderExpense()
         })
+
+        onMounted(() => this.renderChart())
+    }
+
+    getMonthsName() {
+        const months = [
+            "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
+            "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+        ];
+    
+        const today = new Date();
+        const currentMonthIndex = today.getMonth();
+    
+        // Calculer les indices des mois
+        const previousMonthIndex1 = (currentMonthIndex - 1 + 12) % 12;
+        const previousMonthIndex2 = (currentMonthIndex - 2 + 12) % 12;
+    
+        // Retourner les noms des mois
+        return [
+            months[currentMonthIndex],         // Mois courant
+            months[previousMonthIndex1],      // Mois précédent
+            months[previousMonthIndex2],      // Mois d'avant
+        ];
+    }
+
+    async getDataOrderExpense() {
+        const labels =  this.getMonthsName()
+        this.state.data_order_expense.labels = labels.reverse()
+
+
+        // data
+        const domain = [['state', 'in', ['sale']],['date_entry', '>=', this.state.date]]
+        const prev_domain = [['state', 'in', ['sale']],['date_entry', '>=', this.state.previous_date], ['date_entry', '<',this.state.date]]
+        const prev_prev_domain = [['state', 'in', ['sale']],['date_entry', '>=', this.state.previous_previous_date], ['date_entry', '<',this.state.previous_date]]
+        
+        const current_revenues = await this.orm.readGroup('sale.order', domain, ["amount_total:sum"], [])
+        const prev_revenues = await this.orm.readGroup('sale.order', prev_domain, ["amount_total:sum"], [])
+        const prev_prev_revenues = await this.orm.readGroup('sale.order', prev_prev_domain, ["amount_total:sum"], [])
+
+        
+        const revenues = [ prev_prev_revenues[0].amount_total, prev_revenues[0].amount_total, current_revenues[0].amount_total]
+        
+        // expence
+        const edomain = [['state', 'in', ['done']],['date', '>=', this.state.date]]
+        const eprev_domain = [['state', 'in', ['done']],['date', '>=', this.state.previous_date], ['date', '<',this.state.date]]
+        const eprev_prev_domain = [['state', 'in', ['done']],['date', '>=', this.state.previous_previous_date], ['date', '<',this.state.previous_date]]
+        
+        const current_expenses = await this.orm.readGroup('hr.expense', edomain, ["total_amount_currency:sum"], [])
+        const prev_expenses = await this.orm.readGroup('hr.expense', eprev_domain, ["total_amount_currency:sum"], [])
+        const prev_prev_expenses = await this.orm.readGroup('hr.expense', eprev_prev_domain, ["total_amount_currency:sum"], [])
+
+        const expenses = [ prev_prev_expenses[0].total_amount_currency, prev_expenses[0].total_amount_currency, current_expenses[0].total_amount_currency]
+
+        const datasets = [
+          {
+            label: 'Total ventes du mois',
+            data: revenues,
+            backgroundColor:['blue', 'blue', 'blue'],
+            hoverOffset: 4
+          },{
+            label: 'Total dépenses du mois',
+            data: expenses,
+            backgroundColor:['red', 'red', 'red'],
+            hoverOffset: 4
+          }
+        ]
+
+        this.state.data_order_expense.datasets = datasets
+    }
+
+    renderChart() {
+        
+
+        new Chart(
+            this.chartOrderExpenseRef.el,
+            {
+              type: "bar",
+              data: {
+                labels: this.state.data_order_expense.labels,
+                datasets: this.state.data_order_expense.datasets
+              },
+              options: {
+                responsive: true, 
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display:true,
+                        text:'Commandes et Dépenses',
+                        position:'bottom'
+                    }
+                }
+              }
+            }
+          );
     }
 
     async onChangeStore() {
@@ -55,6 +158,11 @@ export class OwlSalesDashboard extends Component {
         const startOfLastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
         let formatedPreviousDate = this.formatDate(startOfLastMonth)
         this.state.previous_date = formatedPreviousDate
+
+        // previous previous date
+        const startOfTwoMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 2, 1);
+        let formatedPreviousPreviousDate = this.formatDate(startOfTwoMonthsAgo)
+        this.state.previous_previous_date = formatedPreviousPreviousDate
     }
 
     getTodayStart() {
