@@ -106,6 +106,7 @@ export class OwlSalesDashboard extends Component {
         // const current_revenues = await this.orm.readGroup('sale.order', domain, ["amount_total:sum"], [''])
         let profits = []
         let i=10
+        console.log("labels", labels)
         labels.forEach(async (label) => {
           let start = label+ " 00:00:00"
           let end = label+ " 23:59:59"
@@ -117,6 +118,7 @@ export class OwlSalesDashboard extends Component {
           const total_order = amount_order[0].amount_total ? amount_order[0].amount_total : 0
           const total_expense = amount_expense[0].total_amount_currency ? amount_expense[0].total_amount_currency : 0
           profits.push(total_order - total_expense)
+          console.log("profits", profits)
         })
         
         const datasets = [
