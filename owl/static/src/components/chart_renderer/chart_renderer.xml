@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates xml:space="preserve">
-	<t t-name="owl.ChartRenderer" owl="1">	
-        <canvas t-ref="chart" />
+	<t t-name="owl.ChartRenderer" owl="1">
+        <div class="row">
+            <div class="col m-0 p-0">
+                <div class="shadow-sm border m-2 p-4 bg-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h3 class="text-primary fw-bold">Commandes et Dépenses</h3>
+                       <div>
+                       <!-- t-model="state.store" t-on-change="onChangeStore" -->
+                            <select class="form-select" >
+                                <option value="tous">Tous</option>
+                                <option value="67ha">Magasin 67ha</option>
+                                <option value="behoririka">Magasin Behoririka</option>
+                            </select>
+                        </div>
+                    </div>
+                    <canvas t-ref="chart" />
+                </div>
+            </div>
+        </div>	
+        
     </t>	
 </templates>

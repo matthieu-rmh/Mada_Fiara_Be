@@ -9,55 +9,20 @@
 							<div class="shadow-sm border m-2 p-4 bg-white">
 								<div class="d-flex align-items-center justify-content-between">
 									<h1 class="text-primary fw-bold">Tableau de bord</h1>
-									<!-- <div>
-										<select class="form-select" t-model="state.store" t-on-change="onChangeStore">
-											<option value="tous">Tous</option>
-											<option value="67ha">Magasin 67ha</option>
-											<option value="behoririka">Magasin Behoririka</option>
-										</select>
-									</div> -->
+									
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="row">
-						<div class="col m-0 p-0">
-							<div class="shadow-sm border m-2 p-4 bg-white">
-								<div class="d-flex align-items-center justify-content-between">
-									<h3 class="text-primary fw-bold">Commandes et Dépenses</h3>
-									<div class="px-3 py-1 bg-primary cursor-pointer">
-										<span class="fa fa-arrow-right text-white"/>
-									</div>
-								</div>
-								<canvas t-ref="chart_order_per_expense" />
-								<!-- <ChartRenderer name="'order_per_expence'" type="'bar'" title="'Commandes et Dépenses'" store="state.store" /> -->
-							</div>
-						</div>
-					</div>
-
-					
-					
+					<ChartRenderer name="'order_per_expence'" type="'bar'" title="'Commandes et Dépenses'" store="state.store" />
+			
 				</div>
 
 				<div class="col-lg-6">
-					
 
-					<div class="row">
-						<div class="col m-0 p-0">
-							<div class="shadow-sm border m-2 p-4 bg-white">
-								<div class="d-flex align-items-center justify-content-between">
-									<h3 class="text-primary fw-bold">Evolution bénéfice par jour</h3>
-									<div class="px-3 py-1 bg-primary cursor-pointer">
-										<span class="fa fa-arrow-right text-white"/>
-									</div>
-								</div>
-								<canvas t-ref="chart_daily_profit" />
-								<!-- <ChartRenderer name="'daily_profit'" type="'line'" title="'Evolution bénéfice par jour'" store="state.store" /> -->
-							</div>
-						</div>
-					</div>
+					<ChartRenderer name="'daily_profit'" type="'line'" title="'Evolution bénéfice par jour'" store="state.store" />
 					
 				</div>
 				
