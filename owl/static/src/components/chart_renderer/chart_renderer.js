@@ -98,6 +98,8 @@ export class ChartRenderer extends Component {
         const labels =  this.getMonthsName()
         this.state.data.labels = labels.reverse()
 
+        console.log("this.props.store", this.props.store)
+
         // data
         const domain = [['state', 'in', ['sale']],['date_entry', '>=', this.state.date]]
         const prev_domain = [['state', 'in', ['sale']],['date_entry', '>=', this.state.previous_date], ['date_entry', '<',this.state.date]]

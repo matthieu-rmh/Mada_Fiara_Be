@@ -29,7 +29,8 @@ export class OwlSalesDashboard extends Component {
             },
             visits_of_the_day: [],
             day_remain:0,
-            period: 30
+            period: 30,
+            store: "tous"
         })
         this.orm = useService('orm')
         this.actionService = useService("action")
@@ -40,9 +41,8 @@ export class OwlSalesDashboard extends Component {
         })
     }
 
-    async onChangePeriod() {
-        this.getDates()
-        await this.getOrders()
+    async onChangeStore() {
+        console.log(this.state.store)
     }
 
     getDates () {
