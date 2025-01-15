@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dashboard_target,access.dashboard.target,model_dashboard_target,,1,1,1,1
+access_dashboard_parameter,access.dashboard.parameter,model_dashboard_parameter,,1,1,1,1
+access_order_visite_ratio,access.order_visite.ratio,model_order_visite_ratio,,1,1,1,1

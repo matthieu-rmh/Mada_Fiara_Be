@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+	<t t-name="owl.OwlSalesDashboard" owl="1">	
+		<div class="vh-100 overflow-auto bg-muted">
+			<div class="row m-3">
+				<div class="col-lg-7">
+					<div class="row">
+						<div class="col m-0 p-0">
+							<div class="shadow-sm border m-2 p-4 bg-white">
+								<div class="d-flex align-items-center justify-content-between">
+									<h1 class="text-primary fw-bold">Tableau de bord</h1>
+									<div>
+										<select class="form-select" t-model="state.period" t-on-change="onChangePeriod">
+											<!-- <option value="7">Semaine</option> -->
+											<option value="30">Mois</option>
+											<!-- <option value="365">Année</option> -->
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col m-0 p-0">
+							<div class="shadow-sm border m-2 p-4 bg-white">
+								<div class="d-flex align-items-center justify-content-between">
+									<h3 class="text-primary fw-bold">Commandes et Dépenses</h3>
+									<div class="px-3 py-1 bg-primary cursor-pointer">
+										<span class="fa fa-arrow-right text-white"/>
+									</div>
+								</div>
+								<ChartRenderer name="'order_per_expence'" type="'bar'" title="'Commandes et Dépenses'" />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col m-0 p-0">
+							<div class="shadow-sm border m-2 p-4 bg-white">
+								<div class="d-flex align-items-center justify-content-between">
+									<h3 class="text-primary fw-bold">Evolution bénéfice par jour</h3>
+									<div class="px-3 py-1 bg-primary cursor-pointer">
+										<span class="fa fa-arrow-right text-white"/>
+									</div>
+								</div>
+								<ChartRenderer name="'daily_order'" type="'line'" title="'Evolution commandes journalières'" />
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-lg-5">
+					
+					
+					
+				</div>
+
+			</div>
+		</div>
+	</t>	
+</templates>

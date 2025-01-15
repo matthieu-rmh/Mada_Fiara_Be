@@ -16,7 +16,7 @@
 
     <!-- Action -->
     <record id="action_sale_order_graph_view" model="ir.actions.act_window">
-        <field name="name">Commandes par jour</field>
+        <field name="name">Analyse transaction</field>
         <field name="res_model">sale.order</field>
         <field name="view_mode">graph</field>
         <field name="context">{'group_by':[ 'date_entry', 'user_id']}</field>
@@ -25,7 +25,7 @@
 
      <!-- Menu Item -->
     <menuitem id="menu_sale_order_analysis" 
-              name="Commandes par jour" 
+              name="Analyse transaction" 
               parent="sale.menu_sale_report"
               sequence="20"
               action="action_sale_order_graph_view"/>
