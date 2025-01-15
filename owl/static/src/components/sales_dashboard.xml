@@ -53,6 +53,7 @@
 										<span class="fa fa-arrow-right text-white"/>
 									</div>
 								</div>
+								<canvas t-ref="chart_daily_profit" />
 								<!-- <ChartRenderer name="'daily_profit'" type="'line'" title="'Evolution bénéfice par jour'" store="state.store" /> -->
 							</div>
 						</div>

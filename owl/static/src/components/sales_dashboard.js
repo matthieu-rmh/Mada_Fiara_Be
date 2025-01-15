@@ -11,6 +11,7 @@ const { Component, onWillStart, useRef, onMounted, useState } = owl
 export class OwlSalesDashboard extends Component {
     setup() {
         this.chartOrderExpenseRef = useRef("chart_order_per_expense")
+        this.chartDailyProfitRef = useRef("chart_daily_profit")
         this.state = useState({
             orders: {
                  value:0,
@@ -35,6 +36,10 @@ export class OwlSalesDashboard extends Component {
             data_order_expense: {
                 labels:[],
                 datasets:[]
+              },
+              data_daily_profit: {
+                labels:[],
+                datasets:[]
               }
         })
         this.orm = useService('orm')
@@ -45,9 +50,13 @@ export class OwlSalesDashboard extends Component {
             this.getDates()
             await this.getOrders()
             await this.getDataOrderExpense()
+            await this.getDataDailyProfit()
         })
 
-        onMounted(() => this.renderChart())
+        onMounted(() => {
+            this.renderOrderExpenseChart()
+            this.renderDailyProfitChart()
+        })
     }
 
     getMonthsName() {
@@ -69,6 +78,56 @@ export class OwlSalesDashboard extends Component {
             months[previousMonthIndex1],      // Mois précédent
             months[previousMonthIndex2],      // Mois d'avant
         ];
+    }
+
+    getDayName() {
+        const today = new Date();
+        const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    
+        let dates = [];
+        let currentDate = new Date(startOfMonth);
+    
+        while (currentDate <= today) {
+            dates.push(currentDate.toISOString().split("T")[0]); // Formate en "YYYY-MM-DD"
+            currentDate.setDate(currentDate.getDate() + 1); // Passe au jour suivant
+        }
+    
+        return dates;
+      }
+    
+
+    async getDataDailyProfit() {
+        const labels =  this.getDayName()
+        this.state.data_daily_profit.labels = labels
+
+        // data
+        // const 
+        
+        // const current_revenues = await this.orm.readGroup('sale.order', domain, ["amount_total:sum"], [''])
+        let profits = []
+        let i=10
+        labels.forEach(async (label) => {
+          let start = label+ " 00:00:00"
+          let end = label+ " 23:59:59"
+          let domain = [['state', 'in', ['sale']],['date_entry', '>=', start],['date_entry', '<=', end]]
+          let edomain = [['state', 'in', ['done']],['date', '>=', start],['date', '<=', end]]
+
+          const amount_order = await this.orm.readGroup('sale.order', domain, ["amount_total:sum"], [])
+          const amount_expense = await this.orm.readGroup('hr.expense', edomain, ["total_amount_currency:sum"], [])
+          const total_order = amount_order[0].amount_total ? amount_order[0].amount_total : 0
+          const total_expense = amount_expense[0].total_amount_currency ? amount_expense[0].total_amount_currency : 0
+          profits.push(total_order - total_expense)
+        })
+        
+        const datasets = [
+          {
+            label: 'Evolution bénéfice par jour',
+            data: profits,
+            hoverOffset: 4
+          }
+        ]
+
+        this.state.data_daily_profit.datasets = datasets
     }
 
     async getDataOrderExpense() {
@@ -116,7 +175,33 @@ export class OwlSalesDashboard extends Component {
         this.state.data_order_expense.datasets = datasets
     }
 
-    renderChart() {
+    renderDailyProfitChart() {
+        new Chart(
+            this.chartDailyProfitRef.el,
+            {
+              type: "line",
+              data: {
+                labels: this.state.data_daily_profit.labels,
+                datasets: this.state.data_daily_profit.datasets
+              },
+              options: {
+                responsive: true, 
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display:true,
+                        text:'Evolution bénéfice par jour',
+                        position:'bottom'
+                    }
+                }
+              }
+            }
+          );
+    }
+
+    renderOrderExpenseChart() {
         
 
         new Chart(
