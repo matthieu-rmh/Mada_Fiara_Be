@@ -53,10 +53,7 @@ export class OwlSalesDashboard extends Component {
             await this.getDataDailyProfit()
         })
 
-        onMounted(() => {
-            this.renderOrderExpenseChart()
-            this.renderDailyProfitChart()
-        })
+        onMounted(() => this.renderChart())
     }
 
     getMonthsName() {
@@ -177,33 +174,9 @@ export class OwlSalesDashboard extends Component {
         this.state.data_order_expense.datasets = datasets
     }
 
-    renderDailyProfitChart() {
-        new Chart(
-            this.chartDailyProfitRef.el,
-            {
-              type: "line",
-              data: {
-                labels: this.state.data_daily_profit.labels,
-                datasets: this.state.data_daily_profit.datasets
-              },
-              options: {
-                responsive: true, 
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    },
-                    title: {
-                        display:true,
-                        text:'Evolution bénéfice par jour',
-                        position:'bottom'
-                    }
-                }
-              }
-            }
-          );
-    }
+ 
 
-    renderOrderExpenseChart() {
+    renderChart() {
         
 
         new Chart(
@@ -223,6 +196,31 @@ export class OwlSalesDashboard extends Component {
                     title: {
                         display:true,
                         text:'Commandes et Dépenses',
+                        position:'bottom'
+                    }
+                }
+              }
+            }
+          );
+
+
+          new Chart(
+            this.chartDailyProfitRef.el,
+            {
+              type: "line",
+              data: {
+                labels: this.state.data_daily_profit.labels,
+                datasets: this.state.data_daily_profit.datasets
+              },
+              options: {
+                responsive: true, 
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display:true,
+                        text:'Evolution bénéfice par jour',
                         position:'bottom'
                     }
                 }
