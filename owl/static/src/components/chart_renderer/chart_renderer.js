@@ -99,9 +99,9 @@ export class ChartRenderer extends Component {
         this.state.data.labels = labels.reverse()
 
         // data
-        const domain = [['state', 'in', ['sale']],['date_order', '>=', this.state.date]]
-        const prev_domain = [['state', 'in', ['sale']],['date_order', '>=', this.state.previous_date], ['date_order', '<',this.state.date]]
-        const prev_prev_domain = [['state', 'in', ['sale']],['date_order', '>=', this.state.previous_previous_date], ['date_order', '<',this.state.previous_date]]
+        const domain = [['state', 'in', ['sale']],['date_entry', '>=', this.state.date]]
+        const prev_domain = [['state', 'in', ['sale']],['date_entry', '>=', this.state.previous_date], ['date_entry', '<',this.state.date]]
+        const prev_prev_domain = [['state', 'in', ['sale']],['date_entry', '>=', this.state.previous_previous_date], ['date_entry', '<',this.state.previous_date]]
         
         const current_revenues = await this.orm.readGroup('sale.order', domain, ["amount_total:sum"], [])
         const prev_revenues = await this.orm.readGroup('sale.order', prev_domain, ["amount_total:sum"], [])
@@ -150,7 +150,7 @@ export class ChartRenderer extends Component {
         labels.forEach(async (label) => {
           let start = label+ " 00:00:00"
           let end = label+ " 23:59:59"
-          let domain = [['state', 'in', ['sale']],['date_order', '>=', start],['date_order', '<=', end]]
+          let domain = [['state', 'in', ['sale']],['date_entry', '>=', start],['date_entry', '<=', end]]
           let edomain = [['state', 'in', ['done']],['date', '>=', start],['date', '<=', end]]
 
           const amount_order = await this.orm.readGroup('sale.order', domain, ["amount_total:sum"], [])
