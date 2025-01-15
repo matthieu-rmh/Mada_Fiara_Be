@@ -10,8 +10,10 @@ const { Component, onWillStart, useRef, onMounted, useState } = owl
 
 export class OwlSalesDashboard extends Component {
     setup() {
-        this.chartOrderExpenseRef = useRef("chart_order_per_expense")
         this.chartDailyProfitRef = useRef("chart_daily_profit")
+        this.chartOrderExpenseRef = useRef("chart_order_per_expense")
+        
+
         this.state = useState({
             orders: {
                  value:0,
